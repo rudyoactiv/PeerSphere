@@ -1,0 +1,127 @@
+.home-page {
+  .text-zone {
+    position: absolute;
+    left: max(10%, 150px);
+    top: 25%;
+    width: auto;
+    max-height: 90%;
+    text-align: left;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+  }
+
+  h1 {
+    color: #ffc700;
+    font-size: 53px;
+    margin: 0;
+    font-family: 'Coolvetica';
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgb(80, 80, 80, 0.8);
+  }
+
+  h2 {
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-weight: 400px;
+    font-size: 28px;
+    font-family: sans-serif;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px #000;
+    animation: fadeIn 1s 0.5s backwards;
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #4d4d4e;
+    font-size: 20px;
+    font-family: 'Coolvetica';
+    font-weight: 1;
+    animation: fadeIn 1s 0.5s backwards;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: 250px;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    .flat-button {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: sans-serif;
+      letter-spacing: 4px;
+      white-space: nowrap;
+      color: #222;
+      text-decoration: none;
+      padding: 10px 0;
+      margin-top: 0;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(2px);
+      box-shadow: 6px 8px 14px rgb(100, 160, 140, 0.7),
+        -6px -8px 14px rgb(255, 255, 255, 0.5);
+
+      animation: fadeIn 2s 1s backwards, buttonShadow 2s 1s backwards ;
+
+      &:hover {
+        box-shadow: inset 2px 2px 4px rgb(0, 0, 0, 0.5),
+          6px 8px 14px rgb(100, 160, 140, 0.7),
+          -6px -8px 14px rgb(255, 255, 255, 0.5) !important;
+        background: #ffd700;
+        color: #444;
+      }
+    }
+
+    @keyframes buttonShadow {
+      from {
+        box-shadow: 0 0 0 rgba(100, 160, 140, 0);
+      }
+      to {
+        box-shadow: 6px 8px 14px rgb(100, 160, 140, 0.7),
+        -6px -8px 14px rgb(255, 255, 255, 0.5);
+      }
+    }
+
+    .account {
+      width: 100%;
+    }
+
+    .year-buttons {
+      display: flex;
+      flex-direction: row;
+      margin-top: 5px;
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .second {
+        width: calc(50% - 5px);
+        margin: 24px 10px 0 0;
+      }
+      .third {
+        margin-top: 24px;
+        width: calc(50% - 5px);
+      }
+    }
+  }
+
+  .bg-container {
+    position: fixed;
+    z-index: 0;
+    width: auto;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    margin: auto;
+    mask-image: linear-gradient(to right, transparent, black);
+  }
+}

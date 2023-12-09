@@ -1,0 +1,16 @@
+user opens website for first time.
+user is not logged in, sees home page.
+
+User can click account button to reach account dashboard.
+User can click either second or third year buttons while not logged in. User is redirected to account dashboard.
+
+in dashboard user can log in with email@kiit.ac.in addresses only.
+After login, user account dashboard displays input form.
+
+section offered | section needed | kiit email (pre-filled) | batch
+		|		 |			   |
+		|		 |			   |
+		|		 |			   |
+
+Every time user dashboard is opened, run a check to see if current user email already exists in the database.
+Once submitted, user can only edit/delete.
