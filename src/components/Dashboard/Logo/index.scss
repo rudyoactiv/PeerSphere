@@ -1,0 +1,25 @@
+.logo-container {
+  z-index: 0;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  margin: auto;
+
+  .solid-logo {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    height: 75%;
+    animation: fadeInLogo forwards;
+    animation-delay: 4s;
+    animation-duration: 5s;
+    transform: translateY(-50%);
+    z-index: 1;
+  }    
+}
