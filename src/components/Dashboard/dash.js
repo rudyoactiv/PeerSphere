@@ -30,15 +30,6 @@ const Home = () => {
     </label>
   </div>
   <p>
-    <select className="year" id="year" required>
-      <option value="" selected disabled hidden>
-        Choose Year
-      </option>
-      <option value="2nd">2nd year</option>
-      <option value="3rd">3rd year</option>
-    </select>
-  </p>
-  <p>
     <input
       type="number"
       id="currentSection"

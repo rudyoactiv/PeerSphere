@@ -10,24 +10,30 @@
       text-align: left;
       z-index: 1000;
 
-
       .radio-buttons {
-        border-radius: 24px;
         font-size: 16px;
         min-width: 300px;
         width: 75%;
-        min-height: 50px;
+
         backdrop-filter: blur(4px);
-        background: rgba(70, 140, 140, 0.75);
         display: flex;
-        justify-content: space-between;
-        
+
         label {
           flex: 1;
-          text-align: center; /* Center the text within each label */
-          
-          input[type="radio"] {
-            margin-right: 5px; /* Add some spacing between the radio button and text */
+          text-align: center;
+          background-color: rgba(70, 140, 140, 0.75);
+          min-height: 50px;
+          display: flex;
+          align-items: center;
+          border-radius: 0 24px 24px 0;
+
+          input[type='radio'] {
+            margin-right: 5px;
+          }
+
+          &:first-child {
+            border-radius: 24px 0 0px 24px;
+            border-right: 1px solid white; /* Add a right border to the first label for separation */
           }
         }
       }
@@ -51,25 +57,6 @@
         appearance: textfield;
       }
 
-      .year {
-        cursor: pointer;
-        min-height: 50px;
-        min-width: 300px;
-        font-family: 'Helvetica';
-        border-radius: 24px;
-        width: 75%;
-        border: 0;
-        backdrop-filter: blur(4px);
-        background: rgba(70, 140, 140, 0.75);
-        font-size: 16px;
-        color: #fff;
-        padding: 15px;
-        appearance: none;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
-        background-position: 100%;
-        background-repeat: no-repeat;
-      }
-
       .submit-button {
         min-width: 300px;
         font-family: 'Helvetica';
@@ -80,7 +67,7 @@
         background: rgba(255, 220, 100, 0.75);
         min-height: 50px;
         font-size: 16px;
-        color: #fff;
+        color: #000;
         padding: 0 20px;
         box-sizing: border-box;
         cursor: pointer;
