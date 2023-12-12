@@ -10,10 +10,61 @@
       text-align: left;
       z-index: 1000;
 
+      .input-pair {
+        display: flex;
+        max-width: 75%;
+        min-width: 300px;
+
+        label {
+          min-width: 50px;
+          background-color: rgba(70, 140, 140, 0.75);
+          width: max-content;
+          border-radius: 24px 0 0 24px;
+          display: flex;
+          align-items: center;     
+          justify-content:center;
+          color: #fff;
+          font-size: 14px;
+          padding-left: 20px;
+
+        }
+        input {
+            //min-width: 300px;
+            font-family: 'Helvetica';
+            border-radius: 0 24px 24px 0;
+            width:100%;
+            border: 0;
+            backdrop-filter: blur(4px);
+            background: rgba(70, 140, 140, 0.75);
+            min-height: 50px;
+            font-size: 14px;
+            color: #fff;
+            //padding: 0 20px;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+        }
+        .curr-in {
+          border-radius: 0;          
+        }
+        .req-label {
+          border-radius: 0;
+          
+          position: relative;
+          &::before {
+            position: absolute;
+            content: '';
+            left: 0;
+            height: 75%;
+            border-left: 1px solid white; /* Change the color to your preference */
+          }
+        }
+      }
+
       .radio-button {
         display: flex;
         flex-direction: row;
         width: 75%;
+        min-width: 300px;
         input[type='radio'] {
           position: fixed;
           opacity: 0;
@@ -22,13 +73,10 @@
 
         label {
           letter-spacing: 4px;
-
           color: #fff;
           font-family: Arial;
           font-weight: bold;
-
           background-color: rgba(70, 140, 140, 0.75);
-
           font-size: 14px;
           cursor: pointer;
           min-height: 50px;
@@ -61,7 +109,8 @@
       }
 
       input[type='text'],
-      input[type='number'] {
+      #rollNumber
+      {
         min-width: 300px;
         font-family: 'Helvetica';
         border-radius: 24px;
@@ -82,7 +131,9 @@
 
       .submit-button {
         min-width: 300px;
-        font-family: 'Helvetica';
+        font-family: Arial;
+        font-weight: bold;
+        letter-spacing: 2px;
         width: 75%;
         border-radius: 10px;
         border: 0;

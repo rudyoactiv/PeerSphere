@@ -37,27 +37,31 @@ const Home = () => {
               <label htmlFor="3rdYear">YEAR 3</label>
             </div>
             <p>
-              <input
-                type="number"
-                id="currentSection"
-                placeholder="CURRENT SECTION"
-                min="1"
-                max="99"
-                required
-              />
-            </p>
-            <p>
-              <input
-                type="number"
-                id="requiredSection"
-                placeholder="REQUIRED SECTION"
-                min="1"
-                max="99"
-                required
-              />
+              <div className="input-pair">
+                <label htmlFor="currentSection">CSE ~</label>
+                <input
+                  type="number"
+                  className='curr-in'
+                  id="currentSection"
+                  placeholder="CURRENT SECTION"
+                  min="1"
+                  max="99"
+                  required
+                />
+
+                <label className='req-label' htmlFor="requiredSection">CSE ~</label>
+                <input
+                  type="number"
+                  id="requiredSection"
+                  placeholder="REQUIRED SECTION"
+                  min="1"
+                  max="99"
+                  required
+                />
+              </div>
             </p>
             <button className="submit-button" type="submit">
-              Submit
+              SUBMIT
             </button>
           </form>
         </div>
