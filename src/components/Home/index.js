@@ -24,7 +24,7 @@ const Home = () => {
             <Link to="/account" className="flat-button account">
               USER LOGIN
             </Link>
-            <div className='year-buttons'>
+            <div className="year-buttons">
               <Link to="/second-year" className="flat-button second">
                 2<sup>nd</sup> YEAR
               </Link>
