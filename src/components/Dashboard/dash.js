@@ -1,6 +1,7 @@
-import './index.scss'
-import Logo from './Logo'
+import './index.scss';
+import Logo from './Logo';
 import { useRef } from 'react';
+import { auth } from '../../firebase';
 
 const Home = () => {
 
@@ -23,9 +24,9 @@ const Home = () => {
       <div className="container dash">
         <div className="form-zone">
           <form ref={form} onSubmit={submitSection} className="input-form">
-            <h1>Get Noticed</h1>
+            <h1>Get Noticed.</h1>
             <h2>
-              Register yourself <strong>now!</strong>
+              Register yourself <strong><i>now!</i></strong>
             </h2>
             {/*NAME*/}
             <p>
@@ -88,6 +89,9 @@ const Home = () => {
               </div>
             <button className="submit-button" type="submit">
               SUBMIT
+            </button>
+            <button onClick={() => auth.signOut()} className="signout-button">
+              SIGN OUT
             </button>
           </form>
         </div>
