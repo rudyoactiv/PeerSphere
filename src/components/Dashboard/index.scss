@@ -16,7 +16,7 @@
         margin: 0;
         font-family: 'Coolvetica';
         font-weight: 400;
-        text-shadow: 2px 2px 4px rgb(80, 80, 80, 0.8);
+        text-shadow: 2px 2px 4px rgb(80, 80, 80);
       }
       h2 {
         color: #ffffff;
@@ -24,7 +24,7 @@
         margin: 0;
         font-family: 'Coolvetica';
         font-weight: 400;
-        text-shadow: 2px 2px 4px rgb(80, 80, 80, 0.8);
+        text-shadow: 2px 2px 4px rgb(80, 80, 80);
 
         strong {
           position: relative;
@@ -41,6 +41,8 @@
             background-image: url('../../assets/images/underline.svg');
             background-repeat: no-repeat;
             background-size: cover;
+            filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+           //mask: url('../../assets/images/underline.svg');
           }
         }
       }
@@ -61,9 +63,10 @@
           color: #fff;
           font-size: 14px;
           padding-left: 20px;
+          backdrop-filter: blur(4px);
         }
         input {
-          //min-width: 300px;
+          min-width: 100px;
           font-family: 'Helvetica';
           border-radius: 0 24px 24px 0;
           width: 100%;
@@ -98,7 +101,7 @@
         display: flex;
         flex-direction: row;
         width: 75%;
-        min-width: 300px;
+        min-width: 340px;
         input[type='radio'] {
           position: fixed;
           opacity: 0;
@@ -141,7 +144,7 @@
 
       input[type='text'],
       #rollNumber {
-        min-width: 300px;
+        min-width: 340px;
         font-family: 'Helvetica';
         border-radius: 24px;
         width: 75%;
@@ -160,7 +163,7 @@
       }
 
       .submit-button {
-        min-width: 300px;
+        min-width: 340px;
         font-family: Arial;
         font-weight: bold;
         letter-spacing: 2px;
