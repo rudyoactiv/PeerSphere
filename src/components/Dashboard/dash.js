@@ -7,6 +7,8 @@ const Home = () => {
       <div className="container dash">
         <div className="form-zone">
           <form className="input-form">
+            <h1>Get Noticed,</h1>
+            <h2>Register yourself <strong>now!</strong></h2>
             <p>
               <input type="text" id="name" placeholder="NAME" required />
             </p>
@@ -41,7 +43,7 @@ const Home = () => {
                 <label htmlFor="currentSection">CSE ~</label>
                 <input
                   type="number"
-                  className='curr-in'
+                  className="curr-in"
                   id="currentSection"
                   placeholder="CURRENT SECTION"
                   min="1"
@@ -49,7 +51,9 @@ const Home = () => {
                   required
                 />
 
-                <label className='req-label' htmlFor="requiredSection">CSE ~</label>
+                <label className="req-label" htmlFor="requiredSection">
+                  CSE ~
+                </label>
                 <input
                   type="number"
                   id="requiredSection"
