@@ -48,6 +48,7 @@
       }
 
       .input-pair {
+        margin-top: 10px;
         display: flex;
         max-width: 75%;
         min-width: 300px;
@@ -158,17 +159,24 @@
         box-sizing: border-box;
         letter-spacing: 2px;
       }
-      input[type='number'] {
+      input[type='number'],
+      input[type='text']
+      {
         appearance: textfield;
+
+        &:focus {
+          outline: none;
+        }
       }
 
       .submit-button {
+        margin-top: 10px;
         min-width: 340px;
         font-family: Arial;
         font-weight: bold;
         letter-spacing: 2px;
         width: 75%;
-        border-radius: 10px;
+        border-radius: 5px;
         border: 0;
         backdrop-filter: blur(4px);
         background: rgba(255, 220, 100, 0.75);

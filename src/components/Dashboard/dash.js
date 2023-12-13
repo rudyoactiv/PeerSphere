@@ -1,17 +1,37 @@
 import './index.scss'
 import Logo from './Logo'
+import { useRef } from 'react';
 
 const Home = () => {
+
+  const form = useRef();
+
+  const submitSection = (e) => {
+    e.preventDefault();
+
+    const name = form.current[0]?.value;
+    const roll = form.current[1]?.value;
+    const year = form.current.elements.year.value;
+    const current = form.current[4]?.value;
+    const required = form.current[5]?.value;
+
+    console.log(name, roll, year, current, required);
+  }
+
   return (
     <>
       <div className="container dash">
         <div className="form-zone">
-          <form className="input-form">
+          <form ref={form} onSubmit={submitSection} className="input-form">
             <h1>Get Noticed</h1>
-            <h2>Register yourself <strong>now!</strong></h2>
+            <h2>
+              Register yourself <strong>now!</strong>
+            </h2>
+            {/*NAME*/}
             <p>
               <input type="text" id="name" placeholder="NAME" required />
             </p>
+            {/*ROLL*/}
             <p>
               <input
                 type="number"
@@ -20,6 +40,7 @@ const Home = () => {
                 required
               />
             </p>
+            {/*YEAR*/}
             <div className="radio-button">
               <input
                 type="radio"
@@ -38,8 +59,9 @@ const Home = () => {
               />
               <label htmlFor="3rdYear">YEAR 3</label>
             </div>
-            <p>
+            {/*SECTION PAIR*/}
               <div className="input-pair">
+                {/*CURRENT*/}
                 <label htmlFor="currentSection">CSE ~</label>
                 <input
                   type="number"
@@ -51,6 +73,7 @@ const Home = () => {
                   required
                 />
 
+                {/*REQUIRED*/}    
                 <label className="req-label" htmlFor="requiredSection">
                   CSE ~
                 </label>
@@ -63,7 +86,6 @@ const Home = () => {
                   required
                 />
               </div>
-            </p>
             <button className="submit-button" type="submit">
               SUBMIT
             </button>
