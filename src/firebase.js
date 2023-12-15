@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from  "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqL70kIENYdw2Ei6UieFmhUyIKyzPlldo",
@@ -12,11 +13,11 @@ const firebaseConfig = {
   measurementId: "G-J5V2GRNHVB"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider)

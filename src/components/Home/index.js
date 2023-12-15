@@ -22,7 +22,7 @@ const Home = () => {
           </h3>
           <div className="button-container">
             <Link to="/account" className="flat-button account">
-              USER LOGIN
+              DASHBOARD
             </Link>
             <div className="year-buttons">
               <Link to="/second-year" className="flat-button second">

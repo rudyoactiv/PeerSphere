@@ -1,7 +1,10 @@
 import './index.scss';
 import Logo from './Logo';
 import { useRef } from 'react';
-import { auth } from '../../firebase';
+import { auth, db, storage } from '../../firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { addDoc } from 'firebase/firestore/lite';
+import { collection } from 'firebase/firestore/lite';
 
 const Home = () => {
 
@@ -17,6 +20,24 @@ const Home = () => {
     const required = form.current[5]?.value;
 
     console.log(name, roll, year, current, required);
+    
+    saveSection({
+      name,
+      roll,
+      year,
+      current,
+      required
+    });
+  }
+
+  const saveSection = async (section) => {
+    console.log(section);
+    try {
+      await addDoc(collection(db, 'sections'), section)
+      window.location.reload(false);
+    } catch(error) {
+      alert('Failed to submit');
+    }
   }
 
   return (
