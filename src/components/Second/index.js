@@ -1,45 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore/lite';
-import './index.scss';
+import React, { useEffect, useState } from 'react'
+import { db } from '../../firebase'
+import { collection, getDocs } from 'firebase/firestore/lite'
+import './index.scss'
 
 const Second = () => {
-  const [sections, setSections] = useState([]);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' });
+  const [sections, setSections] = useState([])
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterType, setFilterType] = useState('current')
 
   useEffect(() => {
     const fetchData = async () => {
-      const sectionsCollection = collection(db, 'sections');
-      const sectionsSnapshot = await getDocs(sectionsCollection);
+      const sectionsCollection = collection(db, 'sections')
+      const sectionsSnapshot = await getDocs(sectionsCollection)
       const sectionsData = sectionsSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      }));
-      setSections(sectionsData);
-    };
+      }))
+      setSections(sectionsData)
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const requestSort = (key) => {
-    let direction = 'asc';
+    let direction = 'asc'
     if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
+      direction = 'desc'
     }
-    setSortConfig({ key, direction });
-  };
+    setSortConfig({ key, direction })
+  }
 
-  const sortedSections = [...sections].sort((a, b) => {
-    const aValue = a[sortConfig.key];
-    const bValue = b[sortConfig.key];
+  const handleFilterTypeChange = (type) => {
+    setFilterType(type)
+  }
+
+  const filteredSections = sections.filter((section) => {
+    return section[filterType].toLowerCase().includes(searchTerm.toLowerCase())
+  })
+
+  const sortedSections = [...filteredSections].sort((a, b) => {
+    const aValue = a[sortConfig.key]
+    const bValue = b[sortConfig.key]
     if (aValue < bValue) {
-      return sortConfig.direction === 'asc' ? -1 : 1;
+      return sortConfig.direction === 'asc' ? -1 : 1
     }
     if (aValue > bValue) {
-      return sortConfig.direction === 'asc' ? 1 : -1;
+      return sortConfig.direction === 'asc' ? 1 : -1
     }
-    return 0;
-  });
+    return 0
+  })
 
   const renderTableRows = () => {
     return sortedSections.map((section) => (
@@ -48,33 +58,53 @@ const Second = () => {
         <td>CSE - {section.required}</td>
         <td>
           {' '}
-          <a href={`mailto:${section.roll}@kiit.ac.in`}>{`${section.roll}@kiit.ac.in`}</a>
+          <a
+            href={`mailto:${section.roll}@kiit.ac.in`}
+          >{`${section.roll}@kiit.ac.in`}</a>
         </td>
       </tr>
-    ));
-  };
+    ))
+  }
 
   return (
     <div className="container second">
-      <div className="text-zone">
-        <h1>
-          2<sup>nd</sup> Year Entries
-        </h1>
-      </div>
       <div className="table-zone">
+        <div className="text-zone">
+          <div className='table-header'>
+            2<sup>nd</sup> Year Entries
+          </div>
+        </div>
+        <div className="filter-zone">
+          <div>
+            <select
+              value={filterType}
+              onChange={(e) => handleFilterTypeChange(e.target.value)}
+            >
+              <option value="current">Offers</option>
+              <option value="required">Requests</option>
+            </select>
+          </div>
+          <input
+            type="numeric"
+            placeholder="Search a number..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <table>
           <thead>
             <tr>
-              <th onClick={() => requestSort('current')}>Offering</th>
-              <th onClick={() => requestSort('required')}>Asking For</th>
-              <th>Email</th>
+              <th onClick={() => requestSort('current')}>Offer ⬍</th>
+              <th onClick={() => requestSort('required')}>Request ⬍</th>
+              <th className="email-head">Email</th>
             </tr>
           </thead>
           <tbody>{renderTableRows()}</tbody>
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Second;
+export default Second
