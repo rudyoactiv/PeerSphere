@@ -1,0 +1,34 @@
+.container {
+    &.home-page {
+      // Styles for the home page container
+  
+      .text-zone {
+        // Styles for the text zone
+      }
+  
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        height: 10px;  // Set the fixed height
+        overflow-y: auto;  // Enable vertical scrolling
+  
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+  
+        th {
+          background-color: #f2f2f2;
+        }
+  
+        tr:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+  
+  // Additional styles for the loader or other elements can be added here
+  

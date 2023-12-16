@@ -1,7 +1,6 @@
 .second {
-
   .table-zone {
-    position: absolute;
+    position: relative;
     top: 5%;
     left: 100px;
     width: calc(100% - 100px);
@@ -16,7 +15,7 @@
 
     .text-zone {
       z-index: 100;
-      top:0;
+      top: 0;
       position: relative;
       align-self: flex-start;
       margin-left: 5%;
@@ -33,76 +32,100 @@
     }
 
     .filter-zone {
+      width: 90%;
       align-self: flex-start;
       margin-left: 5%;
       display: flex;
+      flex-direction: row;
 
-      select {
-        font-family: 'Helvetica';
-        border: 1px solid rgba(255, 220, 100, 0.75);
-        font-size: 14px;
-        color: #000;
-        padding: 10px 20px;
-        //box-sizing: border-box;
-        border-radius: 24px 0 0 24px;
-        background-color: rgba(255, 220, 100, 0.75);
+      .drop-menu {
+        width: fit-content;
+        //max-width: min-content;
+        select {
+          min-width: fit-content;
+          width: 100%;
+          font-family: 'Helvetica';
+          border: 1px solid rgba(255, 220, 100, 0.75);
+          font-size: 14px;
+          color: #000;
+          padding: 10px 0 10px 20px;
+          //box-sizing: border-box;
+          border-radius: 24px 0 0 24px;
+          background-color: rgba(255, 220, 100, 0.75);
+        }
       }
 
       input[type='numeric'] {
         font-family: 'Helvetica';
         border-radius: 0 24px 24px 0;
-        //width: 75%;
+        max-width: fit-content;
         border: 0;
-        //background: rgba(70, 140, 140, 0.75);
-        //min-height: 50px;
         font-size: 16px;
         color: #000;
         padding: 10px 20px;
         box-sizing: border-box;
         letter-spacing: 2px;
+        width: 100%;
       }
     }
-
-    table {
-      //border: 1px solid black;
-      box-shadow: 6px 8px 14px rgba(31, 124, 93, 0.7),
-        -6px -8px 14px rgb(255, 255, 255, 0.7);
-      border-collapse: separate;
+    .table-container {
+      position: relative;
+      align-self: flex-start;
+      margin-left: 5%;
+      margin-bottom: 20px;
       width: 90%;
-      border-spacing: 0;
+      height: 75vh;
+      overflow-y: auto;
       margin-top: 20px;
-      border-radius: 24px; /* Adjust the border-radius value as needed */
-      overflow: hidden;
+      //border-radius: 24px;
+      box-shadow: 6px 8px 14px rgba(31, 124, 93),
+        -6px -8px 14px rgb(255, 255, 255, 0.7);
+      scrollbar-width: thin;
+      scrollbar-color: rgb(76, 76, 76) rgba(255, 255, 255, 0);
 
-      th,
-      td {
-        padding: 10px 20px;
-        font-size: 20px;
-        font-family: 'Coolvetica';
-        font-weight: 1;
-        border-right: 1px solid black; /* Add this line to create column separators */
-      }
+      table {
+        //border: 1px solid black;
+        border-collapse: separate;
+        width: 100%;
+        border-spacing: 0;
 
-      th:last-child,
-      td:last-child {
-        border-right: none; /* Remove border from the last column to avoid extra separator */
-      }
+        thead {
+          position: sticky;
+          top: 0;
+          background-color: rgb(255, 220, 100, 0.75);
+        }
 
-      th {
-        cursor: pointer;
-        text-align: center;
-        background-color: rgb(255, 220, 100, 0.75);
-      }
-      
-      th.email-head{
-        cursor:default;
-      }
+        th,
+        td {
+          white-space: nowrap;
+          padding: 10px 20px;
+          font-size: 20px;
+          font-family: 'Coolvetica';
+          font-weight: 1;
+          border-right: 1px solid black; /* Add this line to create column separators */
+        }
 
-      tr:nth-child(even) {
-        background-color: #f9f9f9;
-      }
-      td {
-        left: 50%;
+        th:last-child,
+        td:last-child {
+          border-right: none; /* Remove border from the last column to avoid extra separator */
+        }
+
+        th {
+          cursor: pointer;
+          text-align: center;
+          background-color: rgb(255, 220, 100, 0.75);
+        }
+
+        th.email-head {
+          cursor: default;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        td {
+          left: 50%;
+        }
       }
     }
   }

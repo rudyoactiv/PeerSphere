@@ -52,8 +52,9 @@ const Second = () => {
   })
 
   const renderTableRows = () => {
-    return sortedSections.map((section) => (
+    return sortedSections.map((section, index) => (
       <tr key={section.id}>
+        <td>{index + 1}.</td>
         <td>CSE - {section.current}</td>
         <td>CSE - {section.required}</td>
         <td>
@@ -70,12 +71,12 @@ const Second = () => {
     <div className="container second">
       <div className="table-zone">
         <div className="text-zone">
-          <div className='table-header'>
+          <div className="table-header">
             2<sup>nd</sup> Year Entries
           </div>
         </div>
         <div className="filter-zone">
-          <div>
+          <div className='drop-menu'>
             <select
               value={filterType}
               onChange={(e) => handleFilterTypeChange(e.target.value)}
@@ -91,17 +92,19 @@ const Second = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => requestSort('current')}>Offer ⬍</th>
-              <th onClick={() => requestSort('required')}>Request ⬍</th>
-              <th className="email-head">Email</th>
-            </tr>
-          </thead>
-          <tbody>{renderTableRows()}</tbody>
-        </table>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Serial No.</th>
+                <th onClick={() => requestSort('current')}>Offer ⬍</th>
+                <th onClick={() => requestSort('required')}>Request ⬍</th>
+                <th className="email-head">Email</th>
+              </tr>
+            </thead>
+            <tbody>{renderTableRows()}</tbody>
+          </table>
+        </div>
       </div>
     </div>
   )
