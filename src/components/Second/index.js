@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { db } from '../../firebase'
+import { auth, db } from '../../firebase'
 import { collection, getDocs } from 'firebase/firestore/lite'
 import './index.scss'
+import Login from '../Login'
 
 const Second = () => {
   const [sections, setSections] = useState([])
@@ -11,17 +12,27 @@ const Second = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const sectionsCollection = collection(db, 'sections')
-      const sectionsSnapshot = await getDocs(sectionsCollection)
-      const sectionsData = sectionsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setSections(sectionsData)
-    }
+      if (auth.currentUser) {
+        const sectionsCollection = collection(db, 'sections')
+        const sectionsSnapshot = await getDocs(sectionsCollection)
+        const sectionsData = sectionsSnapshot.docs
+          .map((doc) => ({ id: doc.id, ...doc.data() }))
+          .filter((section) => section.year === '2ND YEAR')
+        setSections(sectionsData)
+      } else {
+        // If the user is not logged in, set default values for 5 rows
+        const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+          id: `default-${index + 1}`,
+          current: '-',
+          required: '-',
+          roll: 'email',
+        }));
+        setSections(defaultSections);
+      }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const requestSort = (key) => {
     let direction = 'asc'
@@ -55,8 +66,8 @@ const Second = () => {
     return sortedSections.map((section, index) => (
       <tr key={section.id}>
         <td>{index + 1}.</td>
-        <td>CSE - {section.current}</td>
-        <td>CSE - {section.required}</td>
+        <td>{auth.currentUser ? `CSE - ${section.current}` : `-`}</td>
+        <td>{auth.currentUser ? `CSE - ${section.required}` : `-`}</td>
         <td>
           {' '}
           <a
@@ -72,11 +83,11 @@ const Second = () => {
       <div className="table-zone">
         <div className="text-zone">
           <div className="table-header">
-            2<sup>nd</sup> Year Entries
+            2<sup>nd</sup> Year Students
           </div>
         </div>
         <div className="filter-zone">
-          <div className='drop-menu'>
+          <div className="drop-menu">
             <select
               value={filterType}
               onChange={(e) => handleFilterTypeChange(e.target.value)}
@@ -96,7 +107,7 @@ const Second = () => {
           <table>
             <thead>
               <tr>
-                <th>Serial No.</th>
+                <th className="serial">Serial No.</th>
                 <th onClick={() => requestSort('current')}>Offer ⬍</th>
                 <th onClick={() => requestSort('required')}>Request ⬍</th>
                 <th className="email-head">Email</th>

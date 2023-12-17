@@ -1,42 +1,48 @@
-import './index.scss';
-import Logo from './Logo';
-import { useRef } from 'react';
-import { auth, db, storage } from '../../firebase';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { addDoc } from 'firebase/firestore/lite';
-import { collection } from 'firebase/firestore/lite';
+import './index.scss'
+import Logo from './Logo'
+import { useRef } from 'react'
+import { auth, db, storage } from '../../firebase'
+import { addDoc } from 'firebase/firestore/lite'
+import { collection } from 'firebase/firestore/lite'
 
 const Home = () => {
 
-  const form = useRef();
+  const form = useRef()
+  const currentUser = auth.currentUser
 
   const submitSection = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const name = form.current[0]?.value;
-    const roll = form.current[1]?.value;
-    const year = form.current.elements.year.value;
-    const current = form.current[4]?.value;
-    const required = form.current[5]?.value;
+    const name = form.current[0]?.value
+    const roll = form.current[1]?.value
+    const year = form.current.elements.year.value
+    const current = form.current[4]?.value
+    const required = form.current[5]?.value
 
-    console.log(name, roll, year, current, required);
-    
-    saveSection({
-      name,
-      roll,
-      year,
-      current,
-      required
-    });
+    console.log(name, roll, year, current, required)
+
+    // Check if the logged-in user's email starts with the entered 'roll' value
+    if (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`)) {
+      console.log(name, roll, year, current, required)
+      saveSection({
+        name,
+        roll,
+        year,
+        current,
+        required,
+      })
+    } else {
+      alert("email does not match roll")
+    }
   }
 
   const saveSection = async (section) => {
-    console.log(section);
+    console.log(section)
     try {
       await addDoc(collection(db, 'sections'), section)
-      window.location.reload(false);
-    } catch(error) {
-      alert('Failed to submit');
+      window.location.reload(false)
+    } catch (error) {
+      alert('Failed to submit')
     }
   }
 
@@ -47,7 +53,10 @@ const Home = () => {
           <form ref={form} onSubmit={submitSection} className="input-form">
             <h1>Get Noticed.</h1>
             <h2>
-              Register yourself <strong><i>now!</i></strong>
+              Register yourself{' '}
+              <strong>
+                <i>now!</i>
+              </strong>
             </h2>
             {/*NAME*/}
             <p>
@@ -82,32 +91,32 @@ const Home = () => {
               <label htmlFor="3rdYear">YEAR 3</label>
             </div>
             {/*SECTION PAIR*/}
-              <div className="input-pair">
-                {/*CURRENT*/}
-                <label htmlFor="currentSection">CSE ~</label>
-                <input
-                  type="number"
-                  className="curr-in"
-                  id="currentSection"
-                  placeholder="CURRENT"
-                  min="1"
-                  max="99"
-                  required
-                />
+            <div className="input-pair">
+              {/*CURRENT*/}
+              <label htmlFor="currentSection">CSE ~</label>
+              <input
+                type="number"
+                className="curr-in"
+                id="currentSection"
+                placeholder="CURRENT"
+                min="1"
+                max="99"
+                required
+              />
 
-                {/*REQUIRED*/}    
-                <label className="req-label" htmlFor="requiredSection">
-                  CSE ~
-                </label>
-                <input
-                  type="number"
-                  id="requiredSection"
-                  placeholder="REQUIRED"
-                  min="1"
-                  max="99"
-                  required
-                />
-              </div>
+              {/*REQUIRED*/}
+              <label className="req-label" htmlFor="requiredSection">
+                CSE ~
+              </label>
+              <input
+                type="number"
+                id="requiredSection"
+                placeholder="REQUIRED"
+                min="1"
+                max="99"
+                required
+              />
+            </div>
             <button className="submit-button" type="submit">
               SUBMIT
             </button>

@@ -108,8 +108,10 @@
           opacity: 0;
           pointer-events: none;
         }
+        
 
         label {
+          backdrop-filter: blur(4px);
           letter-spacing: 4px;
           color: #fff;
           font-family: Arial;

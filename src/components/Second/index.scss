@@ -44,6 +44,7 @@
         select {
           min-width: fit-content;
           width: 100%;
+          letter-spacing: 0;
           font-family: 'Helvetica';
           border: 1px solid rgba(255, 220, 100, 0.75);
           font-size: 14px;
@@ -88,6 +89,7 @@
         border-collapse: separate;
         width: 100%;
         border-spacing: 0;
+        //table-layout: fixed;
 
         thead {
           position: sticky;
@@ -105,6 +107,14 @@
           border-right: 1px solid black; /* Add this line to create column separators */
         }
 
+        th.serial,
+        td:first-child {
+
+          max-width: 40px;
+          min-width: 80px;
+          text-align: center;
+        }
+
         th:last-child,
         td:last-child {
           border-right: none; /* Remove border from the last column to avoid extra separator */
@@ -116,15 +126,13 @@
           background-color: rgb(255, 220, 100, 0.75);
         }
 
-        th.email-head {
+        th.email-head,
+        th.serial {
           cursor: default;
         }
 
         tr:nth-child(even) {
           background-color: #f9f9f9;
-        }
-        td {
-          left: 50%;
         }
       }
     }

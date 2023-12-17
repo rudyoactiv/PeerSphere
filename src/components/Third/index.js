@@ -1,54 +1,112 @@
-import { Link } from 'react-router-dom';
-import './index.scss';
-import { useEffect, useState } from 'react';
-import Loader from 'react-loaders';
+import React, { useEffect, useState } from 'react'
+import { db } from '../../firebase'
+import { collection, getDocs } from 'firebase/firestore/lite'
+import './index.scss'
 
-const Home = () => {
-    const [data, setData] = useState([
-        { id: 1, name: 'John Doe' },
-        { id: 2, name: 'Jane Doe' },
-        { id: 3, name: 'Bob Smith' },
-        // Add more data as needed
-    ]);
+const Second = () => {
+  const [sections, setSections] = useState([])
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterType, setFilterType] = useState('current')
 
-    useEffect(() => {
-        // Fetch data or perform any necessary actions here
-        // Example: fetchData().then((result) => setData(result));
-    }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const sectionsCollection = collection(db, 'sections')
+      const sectionsSnapshot = await getDocs(sectionsCollection)
+      const sectionsData = sectionsSnapshot.docs
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .filter((section) => section.year === '3RD YEAR')
+      setSections(sectionsData)
+    }
 
-    return (
-        <>
-            <div className="container home-page">
-                <div className="text-zone">
-                    HelloThird
-                </div>
+    fetchData()
+  }, [])
 
-                {/* Table */}
-                <table className="data-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            {/* Add more columns as needed */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Map over your data to generate rows */}
-                        {data.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                {/* Add more cells as needed */}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+  const requestSort = (key) => {
+    let direction = 'asc'
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc'
+    }
+    setSortConfig({ key, direction })
+  }
 
-            {/* Loader */}
-            <Loader type='pacman' />
-        </>
-    );
+  const handleFilterTypeChange = (type) => {
+    setFilterType(type)
+  }
+
+  const filteredSections = sections.filter((section) => {
+    return section[filterType].toLowerCase().includes(searchTerm.toLowerCase())
+  })
+
+  const sortedSections = [...filteredSections].sort((a, b) => {
+    const aValue = a[sortConfig.key]
+    const bValue = b[sortConfig.key]
+    if (aValue < bValue) {
+      return sortConfig.direction === 'asc' ? -1 : 1
+    }
+    if (aValue > bValue) {
+      return sortConfig.direction === 'asc' ? 1 : -1
+    }
+    return 0
+  })
+
+  const renderTableRows = () => {
+    return sortedSections.map((section, index) => (
+      <tr key={section.id}>
+        <td>{index + 1}.</td>
+        <td>CSE - {section.current}</td>
+        <td>CSE - {section.required}</td>
+        <td>
+          {' '}
+          <a
+            href={`mailto:${section.roll}@kiit.ac.in`}
+          >{`${section.roll}@kiit.ac.in`}</a>
+        </td>
+      </tr>
+    ))
+  }
+
+  return (
+    <div className="container second">
+      <div className="table-zone">
+        <div className="text-zone">
+          <div className="table-header">
+            3<sup>rd</sup> Year Students
+          </div>
+        </div>
+        <div className="filter-zone">
+          <div className="drop-menu">
+            <select
+              value={filterType}
+              onChange={(e) => handleFilterTypeChange(e.target.value)}
+            >
+              <option value="current">Offers</option>
+              <option value="required">Requests</option>
+            </select>
+          </div>
+          <input
+            type="numeric"
+            placeholder="Search a number..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th className="serial">Serial No.</th>
+                <th onClick={() => requestSort('current')}>Offer ⬍</th>
+                <th onClick={() => requestSort('required')}>Request ⬍</th>
+                <th className="email-head">Email</th>
+              </tr>
+            </thead>
+            <tbody>{renderTableRows()}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Home;
+export default Second
