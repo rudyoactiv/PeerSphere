@@ -4,6 +4,8 @@ import { collection, getDocs } from 'firebase/firestore/lite'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import GoogleLogo from '../../assets/images/Google.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const Second = () => {
   const [sections, setSections] = useState([])
@@ -14,30 +16,39 @@ const Second = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-
       try {
-      const user = auth.currentUser
+        const user = auth.currentUser
 
-      if (user) {
-        // User is logged in
-        const sectionsCollection = collection(db, 'sections')
-        const sectionsSnapshot = await getDocs(sectionsCollection)
-        const userRoll = user.email.split('@')[0]
+        if (user) {
+          // User is logged in
+          const sectionsCollection = collection(db, 'sections')
+          const sectionsSnapshot = await getDocs(sectionsCollection)
+          const userRoll = user.email.split('@')[0]
 
-        const sectionsData = sectionsSnapshot.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .filter((section) => section.year === '2ND YEAR')
+          const sectionsData = sectionsSnapshot.docs
+            .map((doc) => ({ id: doc.id, ...doc.data() }))
+            .filter((section) => section.year === '2ND YEAR')
 
-        const hasUserRoll = sectionsData.some(
-          (section) => section.roll === userRoll
-        )
+          const hasUserRoll = sectionsData.some(
+            (section) => section.roll === userRoll
+          )
 
-        if (hasUserRoll || user.email === 'its.rudraneel@gmail.com') {
-          setUserFlag(1) // no issues, display table
-          setSections(sectionsData)
+          if (hasUserRoll || user.email === 'its.rudraneel@gmail.com') {
+            setUserFlag(1) // no issues, display table
+            setSections(sectionsData)
+          } else {
+            setUserFlag(2) // ask to enroll
+            // UserRoll not found, set default sections or handle accordingly
+            const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+              id: `default-${index + 1}`,
+              current: '-',
+              required: '-',
+              roll: 'email',
+            }))
+            setSections(defaultSections)
+          }
         } else {
-          setUserFlag(2) // ask to enroll
-          // UserRoll not found, set default sections or handle accordingly
+          setUserFlag(3) // ask to Log in
           const defaultSections = Array.from({ length: 20 }, (_, index) => ({
             id: `default-${index + 1}`,
             current: '-',
@@ -46,7 +57,11 @@ const Second = () => {
           }))
           setSections(defaultSections)
         }
-      } else {
+      } catch (error) {
+        // Handle Firebase error
+        console.error('Firebase error:', error)
+        // Set user to null
+        auth.currentUser = null
         setUserFlag(3) // ask to Log in
         const defaultSections = Array.from({ length: 20 }, (_, index) => ({
           id: `default-${index + 1}`,
@@ -56,21 +71,7 @@ const Second = () => {
         }))
         setSections(defaultSections)
       }
-    }  catch (error) {
-      // Handle Firebase error
-      console.error('Firebase error:', error);
-      // Set user to null
-      auth.currentUser = null;
-      setUserFlag(3); // ask to Log in
-      const defaultSections = Array.from({ length: 20 }, (_, index) => ({
-        id: `default-${index + 1}`,
-        current: '-',
-        required: '-',
-        roll: 'email',
-      }));
-      setSections(defaultSections);
     }
-  };
 
     // Subscribe to authentication state changes
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -153,16 +154,16 @@ const Second = () => {
               />
             </div>
           ) : userFlag === 2 ? (
-            <div className="prelog-container">
-              <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
-              <Link to="/account">Enroll & Participate</Link>
-            </div>
+            <Link to="/account" className="prelog-container">
+              <FontAwesomeIcon icon={faPencil} className="google-logo" />
+              <span>Enroll & Participate</span>
+            </Link>
           ) : //<button>Enroll & Participate</button>
           userFlag === 3 ? (
-            <div className="prelog-container">
+            <Link to="/account" className="prelog-container">
               <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
-              <Link to="/account">Sign in & Participate</Link>
-            </div>
+              <span>Sign in & Participate</span>
+            </Link>
           ) : (
             console.log('exception')
           )}
