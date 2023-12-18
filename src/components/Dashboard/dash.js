@@ -1,9 +1,11 @@
-import './index.scss'
-import Logo from './Logo'
-import { useRef } from 'react'
-import { auth, db, storage } from '../../firebase'
-import { addDoc } from 'firebase/firestore/lite'
-import { collection } from 'firebase/firestore/lite'
+import './index.scss';
+import Logo from './Logo';
+import { useRef } from 'react';
+import { auth, db } from '../../firebase';
+import { addDoc } from 'firebase/firestore/lite';
+import { collection } from 'firebase/firestore/lite';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
 
@@ -22,7 +24,7 @@ const Home = () => {
     console.log(name, roll, year, current, required)
 
     // Check if the logged-in user's email starts with the entered 'roll' value
-    if (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`)) {
+    if (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`) || currentUser.email === "its.rudraneel@gmail.com") {
       console.log(name, roll, year, current, required)
       saveSection({
         name,
@@ -32,7 +34,7 @@ const Home = () => {
         required,
       })
     } else {
-      alert("email does not match roll")
+      toast.error('Roll number must match email');
     }
   }
 
@@ -127,6 +129,7 @@ const Home = () => {
         </div>
         <Logo />
       </div>
+      <ToastContainer />
     </>
   )
 }

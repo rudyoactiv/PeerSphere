@@ -13,7 +13,7 @@ const Home = () => {
             <br />
             You are at the right place.
             <br />
-            Wondering dow to get started?
+            Wondering how to get started?
           </h2>
           <h3>
             Just login with your college ID,

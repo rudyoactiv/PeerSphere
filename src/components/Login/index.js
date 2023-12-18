@@ -1,17 +1,9 @@
 import { signInWithGoogle } from '../../firebase'
 import './index.scss'
-import { useEffect, useState } from 'react'
 import GoogleLogo from '../../assets/images/Google.png'
 import loginBG from '../../assets/images/login.png'
 
 const Login = () => {
-  const [letterClass, setLetterClass] = useState('text-animate')
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
-  }, [])
 
   const handleSignInWithGoogle = async () => {
     try {
