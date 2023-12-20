@@ -1,16 +1,42 @@
-import './index.scss';
-import Logo from './Logo';
-import { useRef } from 'react';
-import { auth, db } from '../../firebase';
-import { addDoc } from 'firebase/firestore/lite';
-import { collection } from 'firebase/firestore/lite';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import './index.scss'
+import Logo from './Logo'
+import { useEffect, useRef, useState } from 'react'
+import { auth, db } from '../../firebase'
+import { addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore/lite'
+import { collection } from 'firebase/firestore/lite'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faUserPen } from '@fortawesome/free-solid-svg-icons'
 
-const Home = () => {
-
+const Dash = () => {
   const form = useRef()
   const currentUser = auth.currentUser
+  const [sectionsData, setSectionsData] = useState([])
+  const userRoll = currentUser?.email.split('@')[0]
+
+  useEffect(() => {
+    const fetchSectionsData = async () => {
+      try {
+        const sectionsCollection = collection(db, 'sections')
+        const sectionsSnapshot = await getDocs(sectionsCollection)
+        const data = sectionsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        setSectionsData(data)
+      } catch (error) {
+        console.log('Firebase Error:', error)
+      }
+    }
+
+    fetchSectionsData()
+  }, [])
+
+  const isUserRollPresent = () => {
+    console.log(sectionsData.some((section) => section.roll === userRoll))
+    return sectionsData.some((section) => section.roll === userRoll)
+  }
 
   const submitSection = (e) => {
     e.preventDefault()
@@ -24,7 +50,10 @@ const Home = () => {
     console.log(name, roll, year, current, required)
 
     // Check if the logged-in user's email starts with the entered 'roll' value
-    if (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`) || currentUser.email === "its.rudraneel@gmail.com") {
+    if (
+      (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`)) ||
+      currentUser.email === 'its.rudraneel@gmail.com'
+    ) {
       console.log(name, roll, year, current, required)
       saveSection({
         name,
@@ -34,7 +63,7 @@ const Home = () => {
         required,
       })
     } else {
-      toast.error('Roll number must match email');
+      toast.error('Roll number must match email')
     }
   }
 
@@ -47,6 +76,41 @@ const Home = () => {
       alert('Failed to submit')
     }
   }
+
+  const deleteSection = async () => {
+    try {
+      const sectionToDelete = sectionsData.find(
+        (section) => section.roll === userRoll
+      )
+      if (sectionToDelete) {
+        const sectionRef = doc(db, 'sections', sectionToDelete.id)
+        await deleteDoc(sectionRef)
+        setSectionsData((prevSections) =>
+          prevSections.filter((section) => section.id !== sectionToDelete.id)
+        )
+        toast.success('Section deleted successfully')
+      } else {
+        toast.error('Section not found for deletion')
+      }
+    } catch (error) {
+      console.error('Failed to delete section:', error)
+      toast.error('Failed to delete section')
+    }
+  }
+
+  const editSection = async (e) => {
+
+    e.preventDefault();
+
+
+    if (form.current.checkValidity()) {
+      await deleteSection();
+
+      submitSection(e);
+    } else {
+      toast.error('Form is not valid. Please fill in all required fields.');
+    }
+  };
 
   return (
     <>
@@ -119,9 +183,31 @@ const Home = () => {
                 required
               />
             </div>
-            <button className="submit-button" type="submit">
-              SUBMIT
-            </button>
+            {isUserRollPresent() ? (
+              <div className="existing-pair">
+                <button
+                  className="edit-button"
+                  type="button"
+                  onClick={(e) => editSection(e)}
+                >
+                  <FontAwesomeIcon icon={faUserPen} className="icon" />
+                  UPDATE
+                </button>
+
+                <button
+                  className="delete-button"
+                  type="button"
+                  onClick={deleteSection}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} className="icon" />
+                  DELETE
+                </button>
+              </div>
+            ) : (
+              <button className="submit-button" type="submit">
+                SUBMIT
+              </button>
+            )}
             <button onClick={() => auth.signOut()} className="signout-button">
               SIGN OUT
             </button>
@@ -134,4 +220,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Dash

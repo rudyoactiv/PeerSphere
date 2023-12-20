@@ -1,63 +1,106 @@
 import React, { useEffect, useState } from 'react'
-import { db } from '../../firebase'
+import { auth, db } from '../../firebase'
 import { collection, getDocs } from 'firebase/firestore/lite'
 import './index.scss'
+import { Link } from 'react-router-dom'
+import GoogleLogo from '../../assets/images/Google.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const Second = () => {
   const [sections, setSections] = useState([])
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('current')
+  const [userFlag, setUserFlag] = useState(3)
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const sectionsCollection = collection(db, 'sections')
-      const sectionsSnapshot = await getDocs(sectionsCollection)
-      const sectionsData = sectionsSnapshot.docs
-        .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .filter((section) => section.year === '3RD YEAR')
-      setSections(sectionsData)
+      try {
+        const user = auth.currentUser
+        const totalCountSnapshot = await getDocs(collection(db, 'sections'));
+        const totalEntriesCount = totalCountSnapshot.size;
+        setTotalCount(totalEntriesCount);
+        if (user) {
+          // User is logged in
+          const sectionsCollection = collection(db, 'sections')
+          const sectionsSnapshot = await getDocs(sectionsCollection)
+          const userRoll = user.email.split('@')[0]
+
+          const sectionsData = sectionsSnapshot.docs
+            .map((doc) => ({ id: doc.id, ...doc.data() }))
+            .filter((section) => section.year === '2ND YEAR')
+
+          const hasUserRoll = sectionsData.some(
+            (section) => section.roll === userRoll
+          )
+
+          if (hasUserRoll || user.email === 'its.rudraneel@gmail.com') {
+            setUserFlag(1) // no issues, display table
+            setSections(sectionsData)
+          } else {
+            setUserFlag(2) // ask to enroll
+            // UserRoll not found, set default sections or handle accordingly
+            const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+              id: `default-${index + 1}`,
+              current: '-',
+              required: '-',
+              roll: 'email',
+            }))
+            setSections(defaultSections)
+          }
+        } else {
+          setUserFlag(3) // ask to Log in
+          const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+            id: `default-${index + 1}`,
+            current: '-',
+            required: '-',
+            roll: 'email',
+          }))
+          setSections(defaultSections)
+        }
+      } catch (error) {
+        // Handle Firebase error
+        console.error('Firebase error:', error)
+        // Set user to null
+        auth.currentUser = null
+        setUserFlag(3) // ask to Log in
+        const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+          id: `default-${index + 1}`,
+          current: '-',
+          required: '-',
+          roll: 'email',
+        }))
+        setSections(defaultSections)
+      }
     }
 
-    fetchData()
-  }, [])
+    // Subscribe to authentication state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      fetchData()
+    })
 
-  const requestSort = (key) => {
-    let direction = 'asc'
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc'
-    }
-    setSortConfig({ key, direction })
-  }
+    // Clean up the subscription on component unmount
+    return () => unsubscribe()
+  }, []) // Empty dependency array ensures the effect runs only on mount and unmount
 
   const handleFilterTypeChange = (type) => {
     setFilterType(type)
   }
 
   const filteredSections = sections.filter((section) => {
-    return section[filterType].toLowerCase().includes(searchTerm.toLowerCase())
-  })
-
-  const sortedSections = [...filteredSections].sort((a, b) => {
-    const aValue = a[sortConfig.key]
-    const bValue = b[sortConfig.key]
-    if (aValue < bValue) {
-      return sortConfig.direction === 'asc' ? -1 : 1
-    }
-    if (aValue > bValue) {
-      return sortConfig.direction === 'asc' ? 1 : -1
-    }
-    return 0
+    return section[filterType]
+      .toLowerCase()
+      .startsWith(searchTerm.toLowerCase())
   })
 
   const renderTableRows = () => {
-    return sortedSections.map((section, index) => (
+    return filteredSections.map((section, index) => (
       <tr key={section.id}>
         <td>{index + 1}.</td>
-        <td>CSE - {section.current}</td>
-        <td>CSE - {section.required}</td>
+        <td>{auth.currentUser ? `CSE - ${section.current}` : '-'}</td>
+        <td>{auth.currentUser ? `CSE - ${section.required}` : '-'}</td>
         <td>
-          {' '}
           <a
             href={`mailto:${section.roll}@kiit.ac.in`}
           >{`${section.roll}@kiit.ac.in`}</a>
@@ -71,33 +114,51 @@ const Second = () => {
       <div className="table-zone">
         <div className="text-zone">
           <div className="table-header">
-            3<sup>rd</sup> Year Students
+            2<sup>nd</sup> Year Students
           </div>
         </div>
         <div className="filter-zone">
-          <div className="drop-menu">
-            <select
-              value={filterType}
-              onChange={(e) => handleFilterTypeChange(e.target.value)}
-            >
-              <option value="current">Offers</option>
-              <option value="required">Requests</option>
-            </select>
-          </div>
-          <input
-            type="numeric"
-            placeholder="Search a number..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          {userFlag === 1 ? (
+            <div className="drop-pair">
+              <div className="drop-menu">
+                <select
+                  value={filterType}
+                  onChange={(e) => handleFilterTypeChange(e.target.value)}
+                >
+                  <option value="current">Offers</option>
+                  <option value="required">Requests</option>
+                </select>
+              </div>
+              <input
+                type="numeric"
+                placeholder="Search a number..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          ) : userFlag === 2 ? (
+            <Link to="/account" className="prelog-container">
+              <FontAwesomeIcon icon={faPencil} className="google-logo" />
+              <span>Enroll & Participate</span>
+            </Link>
+          ) : //<button>Enroll & Participate</button>
+          userFlag === 3 ? (
+            <Link to="/account" className="prelog-container">
+              <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
+              <span>Sign in & Participate</span>
+            </Link>
+          ) : (
+            console.log('exception')
+          )}
         </div>
+        <div className="show-count">Total entries: {totalCount}</div>
         <div className="table-container">
           <table>
             <thead>
               <tr>
                 <th className="serial">Serial No.</th>
-                <th onClick={() => requestSort('current')}>Offer ⬍</th>
-                <th onClick={() => requestSort('required')}>Request ⬍</th>
+                <th>Offer</th>
+                <th>Request</th>
                 <th className="email-head">Email</th>
               </tr>
             </thead>

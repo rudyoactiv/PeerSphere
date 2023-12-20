@@ -9,16 +9,18 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const Second = () => {
   const [sections, setSections] = useState([])
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: '' })
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('current')
   const [userFlag, setUserFlag] = useState(3)
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const user = auth.currentUser
-
+        const totalCountSnapshot = await getDocs(collection(db, 'sections'));
+        const totalEntriesCount = totalCountSnapshot.size;
+        setTotalCount(totalEntriesCount);
         if (user) {
           // User is logged in
           const sectionsCollection = collection(db, 'sections')
@@ -82,42 +84,23 @@ const Second = () => {
     return () => unsubscribe()
   }, []) // Empty dependency array ensures the effect runs only on mount and unmount
 
-  const requestSort = (key) => {
-    let direction = 'asc'
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc'
-    }
-    setSortConfig({ key, direction })
-  }
-
   const handleFilterTypeChange = (type) => {
     setFilterType(type)
   }
 
   const filteredSections = sections.filter((section) => {
-    return section[filterType].toLowerCase().includes(searchTerm.toLowerCase())
-  })
-
-  const sortedSections = [...filteredSections].sort((a, b) => {
-    const aValue = a[sortConfig.key]
-    const bValue = b[sortConfig.key]
-    if (aValue < bValue) {
-      return sortConfig.direction === 'asc' ? -1 : 1
-    }
-    if (aValue > bValue) {
-      return sortConfig.direction === 'asc' ? 1 : -1
-    }
-    return 0
+    return section[filterType]
+      .toLowerCase()
+      .startsWith(searchTerm.toLowerCase())
   })
 
   const renderTableRows = () => {
-    return sortedSections.map((section, index) => (
+    return filteredSections.map((section, index) => (
       <tr key={section.id}>
         <td>{index + 1}.</td>
         <td>{auth.currentUser ? `CSE - ${section.current}` : '-'}</td>
         <td>{auth.currentUser ? `CSE - ${section.required}` : '-'}</td>
         <td>
-          {' '}
           <a
             href={`mailto:${section.roll}@kiit.ac.in`}
           >{`${section.roll}@kiit.ac.in`}</a>
@@ -168,13 +151,14 @@ const Second = () => {
             console.log('exception')
           )}
         </div>
+        <div className="show-count">Total entries: {totalCount}</div>
         <div className="table-container">
           <table>
             <thead>
               <tr>
                 <th className="serial">Serial No.</th>
-                <th onClick={() => requestSort('current')}>Offer ⬍</th>
-                <th onClick={() => requestSort('required')}>Request ⬍</th>
+                <th>Offer</th>
+                <th>Request</th>
                 <th className="email-head">Email</th>
               </tr>
             </thead>

@@ -170,8 +170,68 @@
           outline: none;
         }
       }
+      .existing-pair {
+        display: flex;
+        flex-direction: row;
+        width: 75%;
+        min-width: 340px;
 
-      button {
+        button {
+          width: calc(50% - 5px);
+          margin-top: 20px;
+          font-family: Arial;
+          font-weight: bold;
+          letter-spacing: 2px;
+          border-radius: 5px;
+          border: 0;
+          backdrop-filter: blur(4px);
+          background: rgba(255, 220, 100, 0.75);
+          min-height: 50px;
+          font-size: 14px;
+          color: #000;
+          padding: 0 20px;
+          box-sizing: border-box;
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(
+              255,
+              200,
+              50,
+              0.9
+            ); // Change the background color on hover
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); // Add a box shadow on hover
+          }
+
+          &:first-child{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5px;
+
+            .icon {
+              height: 20px;
+              padding-right: 10px;
+              margin-right: 10px;
+              border-right: 1px solid black;
+            }
+          }
+          &:nth-child(2) {
+            margin-left: 5px;
+
+            .icon {
+              height: 20px;
+              padding-right: 10px;
+              margin-right: 10px;
+              border-right: 1px solid black;
+            }
+          }
+        }
+      }
+
+      .signout-button,
+      .submit-button 
+      {
         margin-top: 10px;
         min-width: 340px;
         font-family: Arial;

@@ -84,6 +84,7 @@
         width: 100%;
         align-self: flex-start;
         //margin-left: 5%;
+        height: 100%;
         display: flex;
         flex-direction: row;
 
@@ -93,6 +94,7 @@
           select {
             min-width: fit-content;
             width: 100%;
+            height: 100%;
             letter-spacing: 0;
             font-family: 'Helvetica';
             border: 1px solid rgba(255, 220, 100, 0.75);
@@ -119,6 +121,16 @@
         }
       }
     }
+    .show-count {
+      position: relative;
+      align-self: flex-start;
+      margin-left: 5%;
+      margin-top: 20px;
+      color: #4d4d4e;
+      font-size: 20px;
+      font-family: 'Coolvetica';
+      display: flex;
+    }
     .table-container {
       position: relative;
       align-self: flex-start;
@@ -129,8 +141,7 @@
       overflow-y: auto;
       margin-top: 20px;
       //border-radius: 24px;
-      box-shadow: 6px 8px 14px rgba(31, 124, 93),
-        -6px -8px 14px rgb(255, 255, 255, 0.7);
+      //box-shadow: 6px 8px 14px rgba(31, 124, 93), -6px -8px 14px rgb(255, 255, 255, 0.7);
       scrollbar-width: thin;
       scrollbar-color: rgb(76, 76, 76) rgba(255, 255, 255, 0);
 
