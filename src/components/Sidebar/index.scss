@@ -1,151 +1,137 @@
 .nav-bar {
-    background: #1e1e1e;
-    width: 100px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 2000;
-      
-    .logo {
-      position: relative;
-      text-align: center;
+  background: #1e1e1e;
+  width: 100px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: center;
+
+  .logo {
+    margin-top: 20px;
+    margin-bottom: auto;
+    text-align: center;
+    font-size: 40px;
+    background: #282828;
+    border-radius: 20px;
+    width: 80%;
+    padding: 10px 0;
+
+    &:hover {
+      svg {
+        color: white;
+      }
+    }
+  }
+
+  .nav {
+    display: block;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      font-size: 22px;
+      color: #4d4d4e;
       display: block;
-      padding: 10px;
-      border: 10px solid #1e1e1e;
-      //margin: 10px 10px;
-      
-      font-size: 40px;
-      background: #282828; /* Darker background color for the logo */
-      border-radius: 20px; /* Adding rounded corners to the logo */
-      z-index: 100;
+      line-height: 50px;
+      height: 50px;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.3s ease-out;
+
+
+      i {
+        transition: all 0.3s ease-out;
+      }
 
       &:hover {
+        color: white;
+
         svg {
           color: white;
         }
+
+        &:after {
+          opacity: 1;
+        }
+
+        & ~ a {
+          // only icons below selection
+          transform: translateY(20px);
+        }
       }
-    }
-  
-    nav {
-      backdrop-filter: blur(2px);
-      display: block;
-      text-align: center;
-      position: absolute;
-      height: 255px;
-      width: 100%;
-      top: 50%;
-      margin-top: -150px;
-  
-      a {
-        font-size: 22px;
-        color: #4d4d4e;
+
+      &::after {
+        content: '';
+        font-size: 12px;
+        letter-spacing: 2px;
+        position: absolute;
+        top: 40px;
+        bottom: 0;
         display: block;
-        line-height: 51px;
-        height: 51px;
-        position: relative;
-        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
         transition: all 0.3s ease-out;
-        position: relative;
-        z-index: 1;
-  
-        i {
-          transition: all 0.3s ease-out;
-        }
-  
-        &:hover {
-          color: white;
-  
-          svg {
-            color: white;
-          }
-  
-          &:after {
-            opacity: 1;
-          }
-  
-          & ~ a {
-            // only icons below selection
-            transform: translateY(20px);
-          }
-        }
-  
-        &:after {
-          content: '';
-          font-size: 12px;
-          letter-spacing: 2px;
-          position: absolute;
-          top: 40px;
-          bottom: 0;
-          display: block;
-          width: 100%;
-          text-align: center;
-          opacity: 0;
-          transition: all 0.3s ease-out;
-        }
-  
-        &:first-child {
-          &::after {
-            content: 'HOME';
-          }
-        }
       }
-      a.second-link {
-        &:after {
-          content: '2nd YEAR';
-        }
-      }
-  
-      a.third-link {
-        &:after {
-          content: '3rd YEAR';
-        }
-      }
-  
-      a.tools-link {
-        .separator {
-          height: 1px;
-          background-color: #4d4d4e;
-          margin: 10px auto;
-          width: 75%;
-        }
-        &:after {
-          content: 'ACCOUNT';
-        }
-      }
-  
-      a.active {
-        svg {
-          color: #ffd700;
+      &:first-child {
+        &::after {
+          content: 'HOME';
         }
       }
     }
-    ul {
-      position: absolute;
-      bottom: 20px;
+    a.second-link {
+      &:after {
+        content: '2nd YEAR';
+      }
+    }
+    a.third-link {
+      &:after {
+        content: '3rd YEAR';
+      }
+    }
+
+    a.tools-link {
+      flex-direction: column;
+      .separator {
+        height: 1px;
+        background-color: #4d4d4e;
+        margin: 10px auto;
+        width: 75%;
+      }
+      &:after {
+        content: 'ACCOUNT';
+      }
+    }
+    a.active {
+      svg {
+        color: #ffd700;
+      }
+    }
+  }
+
+  .social {
+    padding-top: 40px;
+    margin-top: auto; /* Push .social to the bottom */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    a {
+
+
       width: 100%;
-      display: block;
-      padding: 0;
-      list-style: none;
-      text-align: center;
-      margin: 0;
-  
-      li {
-        a {
-          padding: 7px 0;
-          display: block;
-          font-size: 20px;
-          line-height: 16px;
-  
-          &:hover svg {
-            color: white;
-          }
-        }
+      font-size: 22px;
+
+
+      &:hover svg {
+        color: white;
       }
     }
   }
-  
-  .hide-it,
-  .hamburger-icon,
-  .close-icon {
-    display: none;
-  }
+}

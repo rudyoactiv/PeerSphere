@@ -34,7 +34,7 @@ const Dash = () => {
   }, [])
 
   const isUserRollPresent = () => {
-    console.log(sectionsData.some((section) => section.roll === userRoll))
+    //console.log(sectionsData.some((section) => section.roll === userRoll))
     return sectionsData.some((section) => section.roll === userRoll)
   }
 
@@ -99,18 +99,26 @@ const Dash = () => {
   }
 
   const editSection = async (e) => {
+    e.preventDefault()
 
-    e.preventDefault();
+    const rollInput = form.current[1]?.value
 
+    if (
+      (currentUser &&
+        currentUser.email.startsWith(`${rollInput}@kiit.ac.in`)) ||
+      currentUser.email === 'its.rudraneel@gmail.com'
+    ) {
+      if (form.current.checkValidity()) {
+        await deleteSection()
 
-    if (form.current.checkValidity()) {
-      await deleteSection();
-
-      submitSection(e);
+        submitSection(e)
+      } else {
+        toast.error('Form is not valid. Please fill in all required fields.')
+      }
     } else {
-      toast.error('Form is not valid. Please fill in all required fields.');
+      toast.error('Roll number must match email')
     }
-  };
+  }
 
   return (
     <>

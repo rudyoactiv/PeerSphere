@@ -24,7 +24,7 @@ const Login = () => {
         Sign in
         <div className="login-body">
           Log in with your college assigned email address to find others just like you!
-          <p>
+
             <h3>
               By signing in, you agree to share your email address with the
               application database.
@@ -36,7 +36,6 @@ const Login = () => {
               <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
               Sign in with<br/>College Credentials
             </button>
-          </p>
         </div>
       </div>
       <img className="bg-container" src={loginBG} alt="loginBG" />

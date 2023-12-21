@@ -11,7 +11,7 @@ const Dashboard = () => {
   const auth = getAuth()
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // Check if the email ends with the allowed domain
         if (
@@ -21,11 +21,15 @@ const Dashboard = () => {
           setUser(user)
         } else {
             setUser(null)
+            auth.signOut();
+            toast.error('Please login with college ID only');
         }
       } else {
         setUser(null)
       }
-    })
+    });
+
+    return () => unsubscribe();
   }, [auth])
 
   return (
@@ -33,6 +37,7 @@ const Dashboard = () => {
       <div>
         {user ? <Dash /> : <Login />}
       </div>
+      <ToastContainer />
     </>
   )
 }

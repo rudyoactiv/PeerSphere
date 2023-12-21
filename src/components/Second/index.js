@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const Second = () => {
+  //const allowedDomain = '@kiit.ac.in'
   const [sections, setSections] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('current')
@@ -49,7 +50,37 @@ const Second = () => {
             }))
             setSections(defaultSections)
           }
-        } else {
+        }
+        /*if (user.email.endsWith(allowedDomain) ||
+        user.email === 'its.rudraneel@gmail.com') {
+          // User is logged in
+          const sectionsCollection = collection(db, 'sections')
+          const sectionsSnapshot = await getDocs(sectionsCollection)
+          const userRoll = user.email.split('@')[0]
+
+          const sectionsData = sectionsSnapshot.docs
+            .map((doc) => ({ id: doc.id, ...doc.data() }))
+            .filter((section) => section.year === '2ND YEAR')
+
+          const hasUserRoll = sectionsData.some(
+            (section) => section.roll === userRoll
+          )
+
+          if (hasUserRoll || user.email === 'its.rudraneel@gmail.com') {
+            setUserFlag(1) // no issues, display table
+            setSections(sectionsData)
+          } else {
+            setUserFlag(2) // ask to enroll
+            // UserRoll not found, set default sections or handle accordingly
+            const defaultSections = Array.from({ length: 20 }, (_, index) => ({
+              id: `default-${index + 1}`,
+              current: '-',
+              required: '-',
+              roll: 'email',
+            }))
+            setSections(defaultSections)
+          }
+        }*/ else {
           setUserFlag(3) // ask to Log in
           const defaultSections = Array.from({ length: 20 }, (_, index) => ({
             id: `default-${index + 1}`,
