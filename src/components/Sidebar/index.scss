@@ -9,6 +9,7 @@
   flex-direction: column;
   overflow-y: auto;
   align-items: center;
+  scrollbar-width: thin;
 
   .logo {
     margin-top: 20px;
@@ -43,7 +44,6 @@
       position: relative;
       text-decoration: none;
       transition: all 0.3s ease-out;
-
 
       i {
         transition: all 0.3s ease-out;
@@ -123,14 +123,20 @@
     margin-bottom: 20px;
 
     a {
-
-
       width: 100%;
       font-size: 22px;
 
-
-      &:hover svg {
-        color: white;
+      &:first-child {
+        &:hover {
+          svg {
+            color: #0072b1;
+          }
+        }
+      }
+      &:hover {
+        svg {
+          color: white;
+        }
       }
     }
   }

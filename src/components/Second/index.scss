@@ -127,7 +127,7 @@
       margin-left: 5%;
       margin-top: 20px;
       color: #4d4d4e;
-      font-size: 20px;
+      font-size: 36px;
       font-family: 'Coolvetica';
       display: flex;
     }
@@ -137,7 +137,7 @@
       margin-left: 5%;
       margin-bottom: 20px;
       width: 90%;
-      max-height: 75vh;
+      max-height: 65vh;
       overflow-y: auto;
       margin-top: 20px;
       //border-radius: 24px;
@@ -170,8 +170,7 @@
 
         th.serial,
         td:first-child {
-          max-width: 40px;
-          min-width: 80px;
+          width: 40px !important;
           text-align: center;
         }
 
