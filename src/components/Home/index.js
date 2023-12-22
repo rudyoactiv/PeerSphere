@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import './index.scss'
 import HomeBg from '../../assets/images/home-bg.jpg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
   return (
@@ -32,6 +34,10 @@ const Home = () => {
                 3<sup>rd</sup> YEAR
               </Link>
             </div>
+            <Link to="/demo" className="flat-button demo">
+            Site Demo
+              <FontAwesomeIcon icon={faArrowRight} className="eyecon" />
+            </Link>
           </div>
         </div>
         <img className="bg-container" src={HomeBg} alt="homeBg" />

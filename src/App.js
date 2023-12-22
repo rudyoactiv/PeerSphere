@@ -5,7 +5,8 @@ import Home from './components/Home';
 import Second from './components/Second';
 import Third from './components/Third';
 import Dashboard from './components/Dashboard';
-
+import DemoDash from './components/Demo';
+import DemoTable from './components/DemoTable'
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="third-year" element={<Third />} />
         <Route path="account" element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="demo" element={<DemoDash />} />
+        <Route path="demo-table" element={<DemoTable />} />
       </Route>
     </Routes>
   );

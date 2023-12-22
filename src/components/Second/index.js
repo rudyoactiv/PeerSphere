@@ -152,7 +152,7 @@ const Second = () => {
             console.log('exception')
           )}
         </div>
-        <div className="show-count">Total entries: {totalCount}</div>
+        <div className="show-count">Active Users: {totalCount}</div>
         <div className="table-container">
           <table>
             <thead>

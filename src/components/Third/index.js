@@ -7,7 +7,8 @@ import GoogleLogo from '../../assets/images/Google.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
-const Second = () => {
+const Third = () => {
+
   const [sections, setSections] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('current')
@@ -29,7 +30,7 @@ const Second = () => {
 
           const sectionsData = sectionsSnapshot.docs
             .map((doc) => ({ id: doc.id, ...doc.data() }))
-            .filter((section) => section.year === '2ND YEAR')
+            .filter((section) => section.year === '3RD YEAR')
 
           const hasUserRoll = sectionsData.some(
             (section) => section.roll === userRoll
@@ -114,7 +115,7 @@ const Second = () => {
       <div className="table-zone">
         <div className="text-zone">
           <div className="table-header">
-            2<sup>nd</sup> Year Students
+            3<sup>rd</sup> Year Students
           </div>
         </div>
         <div className="filter-zone">
@@ -151,7 +152,7 @@ const Second = () => {
             console.log('exception')
           )}
         </div>
-        <div className="show-count">Total entries: {totalCount}</div>
+        <div className="show-count">Active Users: {totalCount}</div>
         <div className="table-container">
           <table>
             <thead>
@@ -170,4 +171,4 @@ const Second = () => {
   )
 }
 
-export default Second
+export default Third
