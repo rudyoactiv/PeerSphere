@@ -1,7 +1,7 @@
 .disclaimer-table {
   margin-top: 10px;
   font-family: Arial;
-  width: 90% !important;
+  width: fit-content;
   border-radius: 5px;
   border: 0;
   backdrop-filter: blur(4px);
@@ -35,4 +35,10 @@
     margin-left: 10px;
   }
   animation: nudge-demo 4s infinite;
+}
+
+@media screen and (max-width: 600px) {
+  .disclaimer-table {
+    width: 100%;
+  }
 }
