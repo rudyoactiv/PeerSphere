@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './index.scss'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const DemoTable = () => {
   const [sections, setSections] = useState([])
@@ -93,11 +93,10 @@ const DemoTable = () => {
         <div className="show-count">
           Total entries: {totalCount}
         </div>
-        <div className="disclaimer">
-          <i><u>
+        <div className="disclaimer-table">
+          <i>
             UI Demo not representative of actual functionality. <br />
-            This table contains randomly generated data. <br/>
-            Log in to participate.</u>
+            This table contains randomly generated data. <u>Log in to participate.</u>
           </i>
         </div>
         <div className="table-container">
@@ -113,7 +112,7 @@ const DemoTable = () => {
             <tbody>{renderTableRows()}</tbody>
           </table>
         </div>
-        <Link to="/account" className="back-button">
+        <Link to="/" className="back-button-table">
           exit demo
             <FontAwesomeIcon icon={faArrowRightFromBracket} />
           </Link>

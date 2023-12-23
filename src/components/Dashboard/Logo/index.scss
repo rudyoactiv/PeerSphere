@@ -2,19 +2,20 @@
   z-index: 0;
   width: 50%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: auto;
   margin: auto;
+  display: flex;
 
   .solid-logo {
     position: absolute;
     top: 50%;
-    right: 0;
+    
     bottom: auto;
-    left: auto;
+    
     height: 75%;
     animation: fadeInLogo forwards;
     animation-delay: 4s;
@@ -22,4 +23,20 @@
     transform: translateY(-50%);
     z-index: 1;
   }    
+}
+
+@media screen and (max-width: 600px) {
+  .logo-container {
+    z-index: -10;
+    width: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+
+    .solid-logo {
+
+    }
+  }
 }

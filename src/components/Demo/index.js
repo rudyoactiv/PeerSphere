@@ -41,7 +41,7 @@ const Dash = () => {
       <div className={`container dash ${isEditing ? 'editing' : ''}`}>
         <div className="form-zone">
           <form className="input-form" onSubmit={handleSubmit}>
-            <Link to="/account" className="back-button">
+            <Link to="/" className="back-button">
               <FontAwesomeIcon icon={faArrowLeft} /> exit demo
             </Link>
 
@@ -137,7 +137,7 @@ const Dash = () => {
               </button>
             )}
 
-            <Link to="/account">
+            <Link to="/">
               <button className="signout-button">SIGN OUT (Exit Demo)</button>
             </Link>
             <div className="disclaimer">

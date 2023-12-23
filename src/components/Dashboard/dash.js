@@ -110,13 +110,13 @@ const Dash = () => {
     ) {
       if (form.current.checkValidity()) {
         await deleteSection()
-
         submitSection(e)
+
       } else {
         toast.error('Form is not valid. Please fill in all required fields.')
       }
     } else {
-      toast.error('Roll number must match email')
+      toast.error('Roll number must match email.')
     }
   }
 

@@ -1,237 +1,38 @@
-.second {
-  .table-zone {
-    position: relative;
-    top: 5%;
-    left: 100px;
-    width: calc(100% - 100px);
-    max-height: 90%;
-    text-align: left;
-    z-index: 10;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.disclaimer-table {
+  margin-top: 10px;
+  font-family: Arial;
+  width: 90% !important;
+  border-radius: 5px;
+  border: 0;
+  backdrop-filter: blur(4px);
+  background-color: rgb(255, 255, 255, 0.2);
+  min-height: 50px;
+  font-size: 14px;
+  color: #424242;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
 
-    .disclaimer {
-      align-self:flex-start;
-      margin-top: 0;
-      margin-left: 5%;
-      min-width: 340px;
-      font-family: Arial;
-      width: fit-content;
-      border-radius: 5px;
-      border: 0;
-      min-height: 50px;
-      font-size: 14px;
-      color: #424242;
-      padding: 10px 10px;
-      box-sizing: border-box;
-    }
-
-    .back-button {
-      align-self: flex-start;
-      margin-left: 5%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: fit-content;
-      font-size: 24px;
-      font-family: 'Coolvetica';
-      text-decoration: none;
-      background-color: rgba(42, 96, 96, 0.75);
-      color: #fff;
-      //clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
-      padding: 0 10px;
-      border-radius: 5px;
-      svg {
-          margin-right: 10px;
-          margin-left: 10px;
-      }
+.back-button-table {
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  font-size: 22px;
+  font-family: 'Coolvetica';
+  text-decoration: none;
+  background-color: rgba(42, 96, 96, 0.75);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  clip-path: polygon(92.5% 0%, 0% 0%, 0% 100%, 92.5% 100%, 100% 50%);
+  padding-left: 10px;
+  border-radius: 5px 0 0 5px;
+  svg {
+    margin-right: 10px;
+    margin-left: 10px;
   }
-
-    .text-zone {
-      z-index: 100;
-      top: 0;
-      position: relative;
-      align-self: flex-start;
-      margin-left: 5%;
-      margin-bottom: 20px;
-
-      .table-header {
-        color: #ffc700;
-        font-size: 53px;
-        font-family: 'Coolvetica';
-        font-weight: 400;
-        text-shadow: 2px 2px 4px rgb(80, 80, 80, 0.8);
-      }
-    }
-    .filter-zone {
-      width: 95%;
-      align-self: flex-start;
-      margin-left: 5%;
-      display: flex;
-      flex-direction: row;
-      height: 52px;
-
-      .prelog-container {
-        display: flex;
-        margin-right: 20px;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: fit-content;
-        font-size: 16px;
-        font-family: sans-serif;
-        letter-spacing: 2px;
-        white-space: nowrap;
-        color: #222;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 40px;
-        border: none;
-        background: rgba(220, 220, 220, 0.2);
-        backdrop-filter: blur(6px);
-        box-shadow: 6px 8px 14px rgb(31, 124, 93, 0.7),
-          -6px -8px 14px rgb(255, 255, 255, 0.7);
-
-        &:hover {
-          box-shadow: inset 2px 2px 4px rgb(0, 0, 0, 0.5),
-            6px 8px 14px rgb(100, 160, 140, 0.7),
-            -6px -8px 14px rgb(255, 255, 255, 0.5) !important;
-          background: #ffd700;
-          color: #444;
-        }
-        .google-logo {
-          padding-right: 10px;
-          border-right: 1px solid black;
-          width: 32px; // Adjust as needed for the size of the logo
-          margin-right: 10px; // Adjust as needed for the spacing between the logo and text
-        }
-        a {
-          text-decoration: none;
-          font-size: 16px;
-          letter-spacing: 2px;
-          font-family: 'Helvetica';
-          color: #000;
-        }
-      }
-      .drop-pair {
-        width: 100%;
-        align-self: flex-start;
-        //margin-left: 5%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-
-        .drop-menu {
-          width: fit-content;
-          //max-width: min-content;
-          select {
-            min-width: fit-content;
-            width: 100%;
-            height: 100%;
-            letter-spacing: 0;
-            font-family: 'Helvetica';
-            border: 1px solid rgba(255, 220, 100, 0.75);
-            font-size: 14px;
-            color: #000;
-            padding: 10px 0 10px 20px;
-            //box-sizing: border-box;
-            border-radius: 24px 0 0 24px;
-            background-color: rgba(255, 220, 100, 0.75);
-          }
-        }
-
-        input[type='numeric'] {
-          font-family: 'Helvetica';
-          border-radius: 0 24px 24px 0;
-          max-width: fit-content;
-          border: 0;
-          font-size: 16px;
-          color: #000;
-          padding: 10px 20px;
-          box-sizing: border-box;
-          letter-spacing: 2px;
-          width: 100%;
-        }
-      }
-    }
-    .show-count {
-      position: relative;
-      align-self: flex-start;
-      margin-left: 5%;
-      margin-top: 20px;
-      color: #4d4d4e;
-      font-size: 36px;
-      font-family: 'Coolvetica';
-      display: flex;
-    }
-    .table-container {
-      position: relative;
-      align-self: flex-start;
-      margin-left: 5%;
-      margin-bottom: 20px;
-      width: 90%;
-      max-height: 50vh;
-      overflow-y: auto;
-      margin-top: 0;
-      //border-radius: 24px;
-      //box-shadow: 6px 8px 14px rgba(31, 124, 93), -6px -8px 14px rgb(255, 255, 255, 0.7);
-      scrollbar-width: thin;
-      scrollbar-color: rgb(76, 76, 76) rgba(255, 255, 255, 0);
-
-      table {
-        //border: 1px solid black;
-        border-collapse: separate;
-        width: 100%;
-        border-spacing: 0;
-        //table-layout: fixed;
-
-        thead {
-          position: sticky;
-          top: 0;
-          background-color: rgb(255, 220, 100, 1);
-        }
-
-        th,
-        td {
-          white-space: nowrap;
-          padding: 10px 20px;
-          font-size: 20px;
-          font-family: 'Coolvetica';
-          font-weight: 1;
-          border-right: 1px solid black; /* Add this line to create column separators */
-        }
-
-        th.serial,
-        td:first-child {
-          width: 40px !important;
-          text-align: center;
-        }
-
-        th:last-child,
-        td:last-child {
-          border-right: none; /* Remove border from the last column to avoid extra separator */
-        }
-
-        th {
-          cursor: pointer;
-          text-align: center;
-          background-color: rgb(255, 220, 100, 0.75);
-        }
-
-        th.email-head,
-        th.serial {
-          cursor: default;
-        }
-
-        tr:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-      }
-    }
-  }
+  animation: nudge-demo 4s infinite;
 }

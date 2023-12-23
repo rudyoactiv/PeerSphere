@@ -35,7 +35,7 @@ const Home = () => {
               </Link>
             </div>
             <Link to="/demo" className="flat-button demo">
-            Site Demo
+              Site Demo
               <FontAwesomeIcon icon={faArrowRight} className="eyecon" />
             </Link>
           </div>

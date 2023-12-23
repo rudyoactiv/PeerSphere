@@ -1,137 +1,247 @@
-.nav-bar {
-  background: #1e1e1e;
-  width: 100px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  align-items: center;
-  scrollbar-width: thin;
-
-  .logo {
-    margin-top: 20px;
-    margin-bottom: auto;
-    text-align: center;
-    font-size: 40px;
-    background: #282828;
-    border-radius: 20px;
-    width: 80%;
-    padding: 10px 0;
-
-    &:hover {
-      svg {
-        color: white;
-      }
-    }
-  }
-
-  .nav {
-    display: block;
-    text-align: center;
-    width: 100%;
+@media screen and (min-width: 601px) {
+  .nav-bar {
+    background: #1e1e1e;
+    width: 100px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
     flex-direction: column;
+    overflow-y: auto;
     align-items: center;
+    scrollbar-width: thin;
 
-    a {
-      font-size: 22px;
-      color: #4d4d4e;
-      display: block;
-      line-height: 50px;
-      height: 50px;
-      position: relative;
-      text-decoration: none;
-      transition: all 0.3s ease-out;
-
-      i {
-        transition: all 0.3s ease-out;
-      }
+    .logo {
+      margin-top: 20px;
+      margin-bottom: auto;
+      text-align: center;
+      font-size: 40px;
+      background: #282828;
+      border-radius: 20px;
+      width: 80%;
+      padding: 10px 0;
 
       &:hover {
-        color: white;
-
         svg {
           color: white;
         }
-
-        &:after {
-          opacity: 1;
-        }
-
-        & ~ a {
-          // only icons below selection
-          transform: translateY(20px);
-        }
-      }
-
-      &::after {
-        content: '';
-        font-size: 12px;
-        letter-spacing: 2px;
-        position: absolute;
-        top: 40px;
-        bottom: 0;
-        display: block;
-        width: 100%;
-        text-align: center;
-        opacity: 0;
-        transition: all 0.3s ease-out;
-      }
-      &:first-child {
-        &::after {
-          content: 'HOME';
-        }
-      }
-    }
-    a.second-link {
-      &:after {
-        content: '2nd YEAR';
-      }
-    }
-    a.third-link {
-      &:after {
-        content: '3rd YEAR';
       }
     }
 
-    a.tools-link {
+    .nav {
+      display: block;
+      text-align: center;
+      width: 100%;
       flex-direction: column;
-      .separator {
-        height: 1px;
-        background-color: #4d4d4e;
-        margin: 10px auto;
-        width: 75%;
+      align-items: center;
+
+      a {
+        font-size: 22px;
+        color: #4d4d4e;
+        display: block;
+        line-height: 50px;
+        height: 50px;
+        position: relative;
+        text-decoration: none;
+        transition: all 0.3s ease-out;
+
+        i {
+          transition: all 0.3s ease-out;
+        }
+
+        &:hover {
+          color: white;
+
+          svg {
+            color: white;
+          }
+
+          &:after {
+            opacity: 1;
+          }
+
+          & ~ a {
+            // only icons below selection
+            transform: translateY(20px);
+          }
+        }
+
+        &::after {
+          content: '';
+          font-size: 12px;
+          letter-spacing: 2px;
+          position: absolute;
+          top: 40px;
+          bottom: 0;
+          display: block;
+          width: 100%;
+          text-align: center;
+          opacity: 0;
+          transition: all 0.3s ease-out;
+        }
+        &:first-child {
+          &::after {
+            content: 'HOME';
+          }
+        }
       }
-      &:after {
-        content: 'ACCOUNT';
+      a.second-link {
+        &:after {
+          content: '2nd YEAR';
+        }
+      }
+      a.third-link {
+        &:after {
+          content: '3rd YEAR';
+        }
+      }
+
+      a.tools-link {
+        flex-direction: column;
+        .separator {
+          height: 1px;
+          background-color: #4d4d4e;
+          margin: 10px auto;
+          width: 75%;
+        }
+        &:after {
+          content: 'ACCOUNT';
+        }
+      }
+      a.active {
+        svg {
+          color: #ffd700;
+        }
       }
     }
-    a.active {
+
+    .social {
+      padding-top: 40px;
+      margin-top: auto; /* Push .social to the bottom */
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      a {
+        width: 100%;
+        font-size: 22px;
+
+        &:first-child {
+          &:hover {
+            svg {
+              color: #0072b1;
+            }
+          }
+        }
+        &:hover {
+          svg {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-bar {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 10vh;
+    min-height: 50px;
+    background: #1e1e1e;
+    z-index: 2000;
+  }
+  .logo,
+  .nav,
+  .social {
+    flex: 1;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .nav {
+    width: 100%;
+    text-align: center;
+    flex-direction: row;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    min-width: 200px;
+    font-size: 22px;
+    justify-content: space-around;
+
+    a {
+      position: relative;
       svg {
-        color: #ffd700;
+        color: #606060;
+      }
+
+      &.active {
+        svg {
+          color: #ffd700;
+        }
+      }
+      &:after {
+        color: #606060 !important;
+        font-size: 10px;
+        //line-height: 10px;
+        white-space: nowrap;
+        content: 'HOME'; // Your caption text
+        display: block;
+        position: absolute;
+        bottom: -10px; // Adjust the distance between the link and the caption
+        left: 50%; // Center the caption
+        transform: translateX(-50%); // Center the caption
+      }
+
+      &.second-link:after {
+        bottom: -8px;
+        content: 'YEAR 2';
+      }
+
+      &.third-link:after {
+        bottom: -8px;
+        content: 'YEAR 3';
+      }
+
+      &.tools-link:after {
+        content: 'ACCOUNT';
       }
     }
   }
 
   .social {
-    padding-top: 40px;
-    margin-top: auto; /* Push .social to the bottom */
-    display: flex;
+    display:flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    width: fit-content;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 10px;
+    border-radius: 10px 0 0 10px;
+    background-color: rgb(255, 255, 255, 0.4);
 
     a {
       width: 100%;
-      font-size: 22px;
+      font-size: 32px;
 
       &:first-child {
-        &:hover {
           svg {
             color: #0072b1;
           }
-        }
+
       }
       &:hover {
         svg {

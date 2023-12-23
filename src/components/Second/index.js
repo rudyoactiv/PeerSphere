@@ -157,7 +157,7 @@ const Second = () => {
           <table>
             <thead>
               <tr>
-                <th className="serial">Serial No.</th>
+                <th className="serial">Sl.</th>
                 <th>Offer</th>
                 <th>Request</th>
                 <th className="email-head">Email</th>
