@@ -20,8 +20,6 @@ const Login = () => {
     }
   }
 
-
-
   return (
     <div className="login">
       <div className="login-header">
@@ -36,7 +34,7 @@ const Login = () => {
             Listings limited to one per person only.
             <br />
           </h3>
-          <div className='two-buttons'>
+          <div className="two-buttons">
             <button className="button" onClick={handleSignInWithGoogle}>
               <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
               Sign in with
@@ -45,15 +43,15 @@ const Login = () => {
             </button>
 
             <Link to="/demo" className="demo">
-
               <FontAwesomeIcon icon={faEye} className="eyecon" />
               Site Demo
             </Link>
-            
           </div>
         </div>
       </div>
-      <img className="bg-container" src={loginBG} alt="loginBG" />
+      <div className="logo-container">
+        <img className="login-bg" src={loginBG} alt="loginBG" />
+      </div>
     </div>
   )
 }
