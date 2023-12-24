@@ -180,7 +180,7 @@
         position: fixed;
         top: 100px;
         width: 150%;
-
+        filter: blur(2px); /* Adjust the value to control the blur intensity */
       }
       
       //background-size: cover;
