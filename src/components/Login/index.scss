@@ -3,7 +3,7 @@
   margin-left: 100px;
   display: flex;
   flex-direction: column;
-  height: 100%; // Adjust as needed for the desired height of the dashboard
+  height: 100vh; // Adjust as needed for the desired height of the dashboard
 
   .login-header {
     z-index: 100;
@@ -162,13 +162,13 @@
     margin-left: 0 !important;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100% !important;
     
     
     .bg-container {
       left: 0;
       transform: translateX(-25%);
-      width: 100% !important;
+      height: 100% !important;
     }
 
     .login-header {
