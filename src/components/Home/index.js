@@ -9,22 +9,18 @@ const Home = () => {
     <>
       <div className="container home-page">
         <div className="text-zone">
-          <h1>Looking to swap your section?</h1>
+          <h1>Psst, looking for a change?</h1>
           <h2>
-            Don't worry,
+            Getting into the perfect class can be hard,
             <br />
-            You are at the right place.
-            <br />
-            Wondering how to get started?
+            But not finding the right peers to swap with!
           </h2>
           <h3>
-            Just login with your college ID,
-            <br />
-            fill in your details, and get listed now!
+            Just login with your college ID to get started!
           </h3>
           <div className="button-container">
             <Link to="/account" className="flat-button account">
-              DASHBOARD
+              LOG IN
             </Link>
             <div className="year-buttons">
               <Link to="/second-year" className="flat-button second">

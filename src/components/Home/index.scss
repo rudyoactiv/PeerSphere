@@ -22,7 +22,7 @@
   h2 {
     color: #ffffff;
     margin-top: 20px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     font-size: 28px;
     font-family: sans-serif;
     overflow: hidden;
@@ -253,9 +253,10 @@
       font-size: 40px;
     }
     h2 {
-      font-size: 28px !important;
-      line-height: 32px;
-      padding-bottom: 20px;
+      font-size: 20px !important;
+      line-height:normal;
+      //padding-bottom: 5px;
+      margin-bottom: 5px;
     }
 
     .button-container {
