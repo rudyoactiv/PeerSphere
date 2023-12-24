@@ -175,7 +175,8 @@
       height: auto !important;
       img {
         position: fixed;
-        bottom: 100px;
+        top: 50%;
+        transform: translateY(-50%);
         width: 150%;
         left: auto;
         right: auto;
