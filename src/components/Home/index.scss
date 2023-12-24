@@ -238,6 +238,21 @@
 }
 
 @media screen and (max-width: 600px) {
+  .home-page {
+    .bg-container {
+      position: fixed;
+      z-index: 0;
+      background-size: auto 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      margin: auto;
+      mask-image: linear-gradient(to right, transparent, black);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
   .text-zone {
     top: max(20%, 100px) !important;
     left: 50% !important;
