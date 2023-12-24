@@ -1,15 +1,24 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   margin: 0;
   font: 300 11px/1.4 'Helvetica Neue', sans-serif;
   color: #444;
-  background: linear-gradient(135deg, #ffffff, #009688);
-  overflow: auto;
+  background: #022c43;
+  overflow: hidden;
   display: block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-attachment: fixed;
-  background-size: 120% 120vh; /* Updated line */
+}
+
+.dashboard {
+  margin-top: 200px;
+}
+
+@media screen and (max-width:600px) {
+  body {
+    overflow: visible;
+  }
 }
