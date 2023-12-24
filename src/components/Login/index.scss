@@ -173,12 +173,14 @@
       right: auto !important;
       width: 100% !important;
       height: auto !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       img {
         position: fixed;
         top: 100px;
-        width: 100%;
-        left: auto;
-        right: auto;
+        width: 150%;
+
       }
       
       //background-size: cover;
