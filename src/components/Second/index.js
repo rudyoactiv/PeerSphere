@@ -3,7 +3,7 @@ import { auth, db } from '../../firebase'
 import { collection, getDocs } from 'firebase/firestore/lite'
 import './index.scss'
 import { Link } from 'react-router-dom'
-import GoogleLogo from '../../assets/images/Google.png'
+import GoogleLogo from '../../assets/images/Google.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 

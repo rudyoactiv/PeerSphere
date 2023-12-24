@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './index.scss'
-import HomeBg from '../../assets/images/home-bg.jpg'
+import HomeBg from '../../assets/images/home-bg.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 

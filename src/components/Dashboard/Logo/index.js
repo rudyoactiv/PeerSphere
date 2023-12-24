@@ -1,5 +1,5 @@
 import './index.scss'
-import formimg from '../../../assets/images/sign up.png'
+import formimg from '../../../assets/images/sign up.webp'
 import { useRef } from 'react'
 
 const Logo = () => {
