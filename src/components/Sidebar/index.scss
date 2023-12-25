@@ -2,7 +2,7 @@
 
   .copyright {
     text-align: right;
-    background: rgb(0,0,0, 0.2);
+    background: rgb(0,0,0, 0.5);
     color: white;
     position: fixed;
     bottom: 0;
@@ -266,6 +266,7 @@
   .copyright {
     text-align: center;
     background: rgb(0,0,0, 0.2);
+    backdrop-filter: blur(2px);
     color: white;
     position: fixed;
     bottom: 0;
