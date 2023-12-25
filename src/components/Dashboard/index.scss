@@ -1,6 +1,10 @@
 .dash {
   .form-zone {
     .input-form {
+      ::placeholder {
+        color: white;
+        opacity: 1; /* Firefox */
+      }
       position: absolute;
       left: max(10%, 150px);
       top: 50%;
@@ -28,7 +32,7 @@
 
         strong {
           position: relative;
-        
+
           &::after {
             content: '';
             position: absolute;
@@ -37,12 +41,12 @@
             right: -0.5rem;
             height: 1rem;
             z-index: -1;
-        
+
             background-image: url('../../assets/images/underline.svg');
             background-repeat: no-repeat;
             background-size: cover;
             filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
-           //mask: url('../../assets/images/underline.svg');
+            //mask: url('../../assets/images/underline.svg');
           }
         }
       }
@@ -83,7 +87,6 @@
         }
         .curr-in {
           border-radius: 0;
-
         }
         .req-label {
           border-radius: 0;
@@ -109,7 +112,6 @@
           opacity: 0;
           pointer-events: none;
         }
-        
 
         label {
           backdrop-filter: blur(4px);
@@ -163,8 +165,7 @@
         letter-spacing: 2px;
       }
       input[type='number'],
-      input[type='text']
-      {
+      input[type='text'] {
         appearance: textfield;
 
         &:focus {
@@ -204,7 +205,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); // Add a box shadow on hover
           }
 
-          &:first-child{
+          &:first-child {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -231,8 +232,7 @@
       }
 
       .signout-button,
-      .submit-button 
-      {
+      .submit-button {
         margin-top: 10px;
         min-width: 340px;
         font-family: Arial;
@@ -264,11 +264,6 @@
   }
 }
 
-::placeholder {
-  color: white;
-  opacity: 1; /* Firefox */
-}
-
 @media screen and (max-width: 600px) {
   .form-zone {
     height: 100% !important;
@@ -287,7 +282,7 @@
       width: 90% !important;
       transform: translateY(0%) !important;
 
-      input[type="text"],
+      input[type='text'],
       input[type='number'] {
         min-width: 0 !important;
         width: 100% !important;
@@ -309,14 +304,13 @@
         max-width: 100% !important;
       }
 
-      
       .signout-button,
-      .submit-button  {
+      .submit-button {
         min-width: 0 !important;
         width: 100% !important;
         background-color: #ffd700 !important;
       }
-      .signout-button  {
+      .signout-button {
         margin-bottom: 40px;
       }
 
