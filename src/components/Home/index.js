@@ -1,26 +1,26 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+//import { useState, useEffect } from 'react'
 import './index.scss'
 import HomeBg from '../../assets/images/home-bg.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
-  const [showPopup, setShowPopup] = useState(true)
+  //const [showPopup, setShowPopup] = useState(true)
 
   // Check sessionStorage to see if the pop-up has been dismissed in the current session
-  useEffect(() => {
+  /*useEffect(() => {
     const hasPopupDismissed = sessionStorage.getItem('popupDismissed')
     if (hasPopupDismissed) {
       setShowPopup(false)
     }
-  }, [])
+  }, [])*/
 
-  const handlePopupDismiss = () => {
+  /*const handlePopupDismiss = () => {
     // Set a flag in sessionStorage to indicate that the pop-up has been dismissed
     sessionStorage.setItem('popupDismissed', 'true')
     setShowPopup(false)
-  }
+  }*/
 
   return (
     <>
