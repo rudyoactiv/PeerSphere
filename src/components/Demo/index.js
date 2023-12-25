@@ -140,15 +140,16 @@ const Dash = () => {
             <Link to="/">
               <button className="signout-button demo">SIGN OUT (Exit Demo)</button>
             </Link>
+            <Link to="/demo-table" className="next-button">
+              Continue Demo <FontAwesomeIcon icon={faArrowRight} />
+            </Link>
             <div className="disclaimer">
               <i>
                 UI Demo not representative of actual functionality. <br />
                 Log in to participate.
               </i>
             </div>
-            <Link to="/demo-table" className="next-button">
-              Continue Demo <FontAwesomeIcon icon={faArrowRight} />
-            </Link>
+
           </form>
         </div>
         <Logo />
