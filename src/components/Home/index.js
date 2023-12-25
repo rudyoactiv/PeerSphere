@@ -25,6 +25,7 @@ const Home = () => {
   return (
     <>
       <div className="container home-page">
+        {/*
         {showPopup && (
           <div className="popup">
             <div className="popup-body">
@@ -42,18 +43,31 @@ const Home = () => {
                 to check out the Site Demo!
               </p>
               <hr />
-              <button onClick={handlePopupDismiss}>DISMISS</button>
+              <button onClick={handlePopupDismiss}>LET'S GO</button>
             </div>
           </div>
-        )}
+        )}*/}
         <div className="text-zone">
           <h1>Psst, looking for a change?</h1>
+          {/*
           <h2>
             Getting into the perfect class can be hard,
             <br />
             But not finding the right peers to swap with!
           </h2>
-          <h3>Just login with your college ID to get started!</h3>
+          <h3>Just login with your college ID to get started!</h3>*/}
+          <h2>
+            Getting a spot in your favourite class can be hard.
+            <br />
+            <i>PeerSphere</i> is a platform to connect college students and make
+            the process of swapping classes easier.
+            <br />
+          </h2>
+          <h3>
+            Participate using your college ID.
+            <br /> To just explore, feel free to check out the Site
+            Demo!
+          </h3>
           <div className="button-container">
             <Link to="/account" className="flat-button account">
               LOG IN
