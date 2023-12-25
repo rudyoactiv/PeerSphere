@@ -13,30 +13,39 @@
   .solid-logo {
     position: absolute;
     top: 50%;
-    
+
     bottom: auto;
-    
+
     height: 75%;
     animation: fadeInLogo forwards;
     animation-delay: 4s;
     animation-duration: 5s;
     transform: translateY(-50%);
     z-index: 1;
-  }    
+  }
 }
 
 @media screen and (max-width: 600px) {
   .logo-container {
-    z-index: -10;
-    width: 100% !important;
-    left: 0 !important;
+    position: fixed;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
     right: auto !important;
+    width: 100% !important;
+    height: auto !important;
     display: flex;
-    align-items: center !important;
-    justify-content: center !important;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
 
     .solid-logo {
-
+      height: auto;
+      position: fixed;
+      top: 100px;
+      width: 150%;
+      filter: blur(1px); /* Adjust the value to control the blur intensity */
+      transform: translateY(0);
     }
   }
 }

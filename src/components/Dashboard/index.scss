@@ -264,6 +264,11 @@
   }
 }
 
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
 @media screen and (max-width: 600px) {
   .form-zone {
     height: 100% !important;
@@ -272,7 +277,7 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
 
     .input-form {
       margin-left: 5% !important;
