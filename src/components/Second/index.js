@@ -47,6 +47,7 @@ const Second = () => {
               current: '-',
               required: '-',
               roll: 'email',
+              phoneNumber: '-',
             }))
             setSections(defaultSections)
           }
@@ -101,6 +102,7 @@ const Second = () => {
         <td>{index + 1}.</td>
         <td>{auth.currentUser ? `CSE - ${section.current}` : '-'}</td>
         <td>{auth.currentUser ? `CSE - ${section.required}` : '-'}</td>
+        <td>{auth.currentUser ? `${section.phoneNumber}` : '-'}</td>
         <td>
           <a
             href={`mailto:${section.roll}@kiit.ac.in`}
@@ -160,6 +162,7 @@ const Second = () => {
                 <th className="serial">Sl.</th>
                 <th>Offer</th>
                 <th>Request</th>
+                <th className="phone-head">Phone</th>
                 <th className="email-head">Email</th>
               </tr>
             </thead>
