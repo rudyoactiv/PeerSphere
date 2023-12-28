@@ -46,21 +46,23 @@ const Dash = () => {
     const year = form.current.elements.year.value
     const current = form.current[4]?.value
     const required = form.current[5]?.value
+    const phoneNumber = form.current[6]?.value; // Added line
 
-    console.log(name, roll, year, current, required)
+    console.log(name, roll, year, current, required, phoneNumber)
 
     // Check if the logged-in user's email starts with the entered 'roll' value
     if (
       (currentUser && currentUser.email.startsWith(`${roll}@kiit.ac.in`)) ||
       currentUser.email === 'its.rudraneel@gmail.com'
     ) {
-      console.log(name, roll, year, current, required)
+      console.log(name, roll, year, current, required, phoneNumber)
       saveSection({
         name,
         roll,
         year,
         current,
         required,
+        phoneNumber, // Added line
       })
     } else {
       toast.error('Roll number must match email')
@@ -191,6 +193,14 @@ const Dash = () => {
                 required
               />
             </div>
+            <p>
+              <input
+                type="number"
+                id="phoneNumber"
+                placeholder="PHONE NUMBER"
+                required
+              />
+            </p>
             {isUserRollPresent() ? (
               <div className="existing-pair">
                 <button
