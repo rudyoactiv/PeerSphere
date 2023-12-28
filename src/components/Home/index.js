@@ -22,6 +22,12 @@ const Home = () => {
     setShowPopup(false)
   }*/
 
+  const Home = () => {
+  useEffect(() => {
+    // Display an alert message on component mount
+    window.alert('Currently Under Maintenance');
+  }, []);
+
   return (
     <>
       <div className="container home-page">
