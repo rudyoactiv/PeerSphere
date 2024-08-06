@@ -23,10 +23,10 @@ const Home = () => {
     setShowPopup(false)
   }*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     // Display an alert message on component mount
     window.alert('Currently Under Maintenance due to Heavy Load');
-  }, []);
+  }, []);*/
 
   return (
     <>
