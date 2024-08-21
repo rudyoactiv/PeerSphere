@@ -4,7 +4,6 @@ import './index.scss'
 import HomeBg from '../../assets/images/home-bg.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { useEffect } from 'react'
 
 const Home = () => {
   //const [showPopup, setShowPopup] = useState(true)
